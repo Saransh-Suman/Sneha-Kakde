@@ -1,9 +1,51 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { personalInfo } from '../data/portfolioData';
-import { ArrowUpRight, ArrowDown, Sparkles, MapPin, GraduationCap } from 'lucide-react';
+import { ArrowUpRight, ArrowDown, Sparkles, GraduationCap } from 'lucide-react';
+
+const TYPEWRITER_PHRASES = [
+  'Sneha Kakde',
+  'a Visual Designer',
+  'a UX Designer',
+  'a Creative Storyteller',
+  'Sneha Kakde'
+];
 
 export default function Hero({ onOpenContact }) {
+  const [text, setText] = useState('');
+  const [phraseIndex, setPhraseIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(110);
+
+  useEffect(() => {
+    const currentPhrase = TYPEWRITER_PHRASES[phraseIndex];
+
+    const timer = setTimeout(() => {
+      if (!isDeleting) {
+        // Typing forward
+        setText(currentPhrase.substring(0, text.length + 1));
+        setTypingSpeed(100);
+
+        if (text.length + 1 === currentPhrase.length) {
+          // Pause when word is completely typed
+          setTimeout(() => setIsDeleting(true), 2400);
+        }
+      } else {
+        // Deleting backwards
+        setText(currentPhrase.substring(0, text.length - 1));
+        setTypingSpeed(50);
+
+        if (text.length === 0) {
+          setIsDeleting(false);
+          setPhraseIndex((prev) => (prev + 1) % TYPEWRITER_PHRASES.length);
+          setTypingSpeed(300);
+        }
+      }
+    }, typingSpeed);
+
+    return () => clearTimeout(timer);
+  }, [text, isDeleting, phraseIndex, typingSpeed]);
+
   return (
     <section className="relative min-h-[92vh] flex items-center justify-center pt-28 pb-16 px-6 sm:px-8 bg-gradient-to-b from-white via-[#FAFAFC] to-white overflow-hidden">
       
@@ -77,10 +119,14 @@ export default function Hero({ onOpenContact }) {
             <span>Design Portfolio 2026</span>
           </div>
 
-          {/* Main Headline (Exact Typography from Figma) */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-dark tracking-tight leading-[1.12] mb-4">
+          {/* Main Headline with Typewriter Effect */}
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-dark tracking-tight leading-[1.15] mb-4 min-h-[2.4em] sm:min-h-[2.3em]">
             Hi,<br />
-            I’m <span className="text-brand-pink underline decoration-pink-200 decoration-wavy underline-offset-8">Sneha Kakde</span>
+            I’m{' '}
+            <span className="text-brand-pink underline decoration-pink-200 decoration-wavy underline-offset-8 inline-block relative">
+              {text}
+              <span className="inline-block w-[3px] sm:w-[4px] h-[0.82em] bg-brand-pink ml-1.5 animate-cursor rounded-full align-baseline shadow-sm" />
+            </span>
           </h1>
 
           {/* Role Subtitle */}
@@ -153,14 +199,6 @@ export default function Hero({ onOpenContact }) {
               className="hover:text-brand-pink transition-colors"
             >
               Notion ↗
-            </a>
-            <a 
-              href={personalInfo.links.instagram} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="hover:text-brand-pink transition-colors"
-            >
-              Instagram ↗
             </a>
           </div>
 

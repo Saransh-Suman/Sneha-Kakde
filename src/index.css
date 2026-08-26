@@ -28,6 +28,15 @@
   }
 }
 
+@keyframes blinkCursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-cursor {
+  animation: blinkCursor 0.9s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
