@@ -123,7 +123,7 @@ export default function Hero({ onOpenContact }) {
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-dark tracking-tight leading-[1.15] mb-4 min-h-[2.4em] sm:min-h-[2.3em]">
             Hi,<br />
             I’m{' '}
-            <span className="text-brand-pink underline decoration-pink-200 decoration-wavy underline-offset-8 inline-block relative">
+            <span className="text-brand-pink inline-block relative font-black">
               {text}
               <span className="inline-block w-[3px] sm:w-[4px] h-[0.82em] bg-brand-pink ml-1.5 animate-cursor rounded-full align-baseline shadow-sm" />
             </span>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { personalInfo, interests, craftGallery } from '../data/portfolioData';
 import { 
@@ -11,7 +11,6 @@ import {
   Film, 
   Utensils, 
   Layers, 
-  Quote, 
   Sparkles, 
   Heart,
   Eye
@@ -30,13 +29,18 @@ const iconMap = {
 };
 
 export default function About({ onSelectCraft }) {
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Duplicate items for infinite seamless sliding loop
+  const duplicatedGallery = [...craftGallery, ...craftGallery];
+
   return (
-    <section id="about" className="py-24 px-6 sm:px-8 bg-white relative overflow-hidden scroll-mt-20">
+    <section id="about" className="pt-20 pb-12 px-6 sm:px-8 bg-white relative overflow-hidden scroll-mt-20">
       
       {/* Ambient background decoration */}
       <div className="absolute top-1/3 -right-20 w-96 h-96 bg-pink-50 rounded-full blur-3xl -z-10" />
 
-      <div className="max-w-7xl mx-auto space-y-24">
+      <div className="max-w-7xl mx-auto space-y-16 sm:space-y-20">
         
         {/* Section Heading (Matching Figma "A little about me") */}
         <div>
@@ -67,9 +71,6 @@ export default function About({ onSelectCraft }) {
                   alt="Sneha Kakde"
                   className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-              </div>
-              <div className="absolute -bottom-4 -right-4 bg-brand-dark text-white text-xs font-bold px-4 py-2 rounded-2xl shadow-xl border border-gray-700">
-                Sneha Kakde ✨
               </div>
             </div>
           </motion.div>
@@ -153,7 +154,7 @@ export default function About({ onSelectCraft }) {
         </div>
 
         {/* Quote Badge Banner (Matching Figma exact pill) */}
-        <div className="flex justify-center my-12">
+        <div className="flex justify-center my-8">
           <motion.div 
             initial={{ scale: 0.95, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
@@ -171,43 +172,59 @@ export default function About({ onSelectCraft }) {
           </motion.div>
         </div>
 
-        {/* Hands-on Crafts & Studio Photo Showcase Ribbon (Matching Figma bottom strip) */}
-        <div className="space-y-6">
+        {/* Hands-on Crafts & Studio Photo Automatic Smooth Sliding Carousel */}
+        <div className="space-y-6 pt-4">
           <div className="flex items-center justify-between">
             <h4 className="text-lg sm:text-xl font-extrabold text-brand-dark flex items-center gap-2">
               <Sparkles className="w-5 h-5 text-brand-pink" />
               <span>Studio Experiments, Sculptures & Creative Works</span>
             </h4>
             <span className="text-xs text-gray-400 font-semibold hidden sm:inline-block">
-              Scroll horizontally & click to inspect
+              Hover to pause • Click to inspect
             </span>
           </div>
 
-          <div className="flex gap-4 sm:gap-6 overflow-x-auto pb-6 hide-scrollbar snap-x snap-mandatory">
-            {craftGallery.map((craft) => (
-              <motion.div
-                key={craft.id}
-                whileHover={{ scale: 1.03, y: -4 }}
-                transition={{ duration: 0.2 }}
-                onClick={() => onSelectCraft(craft)}
-                className="flex-shrink-0 w-60 sm:w-72 aspect-[3/4] rounded-2xl overflow-hidden shadow-md hover:shadow-2xl border border-gray-200 cursor-pointer relative group snap-start bg-gray-100"
-              >
-                <img
-                  src={craft.image}
-                  alt={craft.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-5 flex flex-col justify-end text-white">
-                  <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center mb-2 self-end">
-                    <Eye className="w-4 h-4" />
+          {/* Smooth Auto-sliding Track */}
+          <div 
+            className="relative overflow-hidden py-2 -mx-6 sm:-mx-8 px-6 sm:px-8 cursor-grab active:cursor-grabbing"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+          >
+            <motion.div
+              className="flex gap-5 sm:gap-6 w-max"
+              animate={isPaused ? {} : { x: ['0%', '-50%'] }}
+              transition={{
+                x: {
+                  repeat: Infinity,
+                  repeatType: 'loop',
+                  duration: 28,
+                  ease: 'linear',
+                },
+              }}
+            >
+              {duplicatedGallery.map((craft, idx) => (
+                <div
+                  key={`${craft.id}-${idx}`}
+                  onClick={() => onSelectCraft(craft)}
+                  className="flex-shrink-0 w-56 sm:w-64 aspect-[3/4] rounded-2xl overflow-hidden shadow-md hover:shadow-2xl border border-gray-200 cursor-pointer relative group bg-gray-100 transition-all duration-300 hover:scale-[1.03]"
+                >
+                  <img
+                    src={craft.image}
+                    alt={craft.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  
+                  {/* Overlay on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-5 flex flex-col justify-end text-white">
+                    <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center mb-2 self-end">
+                      <Eye className="w-4 h-4" />
+                    </div>
+                    <h5 className="font-bold text-sm">{craft.title}</h5>
+                    <p className="text-xs text-gray-300 mt-0.5">{craft.subtitle}</p>
                   </div>
-                  <h5 className="font-bold text-sm">{craft.title}</h5>
-                  <p className="text-xs text-gray-300 mt-0.5">{craft.subtitle}</p>
                 </div>
-              </motion.div>
-            ))}
+              ))}
+            </motion.div>
           </div>
         </div>
 

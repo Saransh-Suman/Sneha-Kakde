@@ -62,7 +62,7 @@ export default function CategoryShowcase({ onSelectImage }) {
   const activeStyle = categoryStyles[currentCategory.id] || categoryStyles.illustration;
 
   return (
-    <section id="archive" className="py-24 px-6 sm:px-8 bg-white border-t border-b border-gray-100 scroll-mt-20">
+    <section id="archive" className="pt-12 pb-24 px-6 sm:px-8 bg-white border-t border-b border-gray-100 scroll-mt-20">
       <div className="max-w-7xl mx-auto space-y-12">
         
         {/* Section Header */}

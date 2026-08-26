@@ -84,18 +84,6 @@ export default function Navbar({ onOpenContact }) {
 
         {/* Action Buttons */}
         <div className="hidden md:flex items-center gap-3">
-          {/* CV Button */}
-          <a
-            href={personalInfo.links.cv}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-gray-800 bg-gray-100 hover:bg-gray-200 rounded-full transition-all hover:scale-105 active:scale-95"
-          >
-            <FileText className="w-3.5 h-3.5" />
-            <span>Curriculum Vitae</span>
-            <ArrowUpRight className="w-3.5 h-3.5 text-gray-500" />
-          </a>
-
           {/* Old/2025 Portfolio Pill Button (Matching Figma) */}
           <a
             href="#archive"
@@ -140,16 +128,6 @@ export default function Navbar({ onOpenContact }) {
                 </a>
               ))}
               <div className="pt-4 border-t border-gray-200 flex flex-col gap-3">
-                <a
-                  href={personalInfo.links.cv}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full py-2.5 rounded-full text-sm font-semibold text-gray-800 bg-gray-100"
-                >
-                  <FileText className="w-4 h-4" />
-                  <span>Curriculum Vitae</span>
-                  <ArrowUpRight className="w-4 h-4" />
-                </a>
                 <a
                   href="#archive"
                   onClick={(e) => scrollToSection(e, '#archive')}
