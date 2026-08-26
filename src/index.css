@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --brand-pink: #E6004C;
+    --brand-pink-hover: #C70041;
+    --brand-dark: #111111;
+    --brand-light: #F8F9FA;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: #FFFFFF;
+    color: #1E1E1E;
+  }
+
+  ::selection {
+    background-color: #E6004C;
+    color: #FFFFFF;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F1F1F1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #E6004C;
+}
+
+/* Sticker Effect for Mascot */
+.sticker-effect {
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.15)) 
+         drop-shadow(0 2px 8px rgba(230, 0, 76, 0.1));
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.sticker-effect:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* Smooth Image Gallery Scrollbar */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Subtle dot pattern background */
+.bg-grid-pattern {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Glass effect */
+.glass-nav {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.glass-dark {
+  background: rgba(17, 17, 17, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Glowing text highlight */
+.text-highlight {
+  color: #E6004C;
+  position: relative;
+  display: inline-block;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #111111 0%, #4B5563 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-pink {
+  background: linear-gradient(135deg, #E6004C 0%, #FF4D6D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
