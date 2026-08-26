@@ -1,19 +1,72 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { archiveCategories } from '../data/portfolioData';
-import { Sparkles, ArrowRight, Eye, Layers } from 'lucide-react';
+import { Sparkles, Eye } from 'lucide-react';
+
+const categoryStyles = {
+  illustration: {
+    color: '#E6004C',
+    bg: 'bg-[#E6004C]',
+    ring: 'ring-[#E6004C]/30',
+    lightBg: 'bg-red-50',
+    border: 'border-red-200'
+  },
+  'graphic-design': {
+    color: '#EAA221',
+    bg: 'bg-[#EAA221]',
+    ring: 'ring-[#EAA221]/30',
+    lightBg: 'bg-amber-50',
+    border: 'border-amber-200'
+  },
+  'character-design': {
+    color: '#1EA896',
+    bg: 'bg-[#1EA896]',
+    ring: 'ring-[#1EA896]/30',
+    lightBg: 'bg-teal-50',
+    border: 'border-teal-200'
+  },
+  'product-design': {
+    color: '#2B78C5',
+    bg: 'bg-[#2B78C5]',
+    ring: 'ring-[#2B78C5]/30',
+    lightBg: 'bg-blue-50',
+    border: 'border-blue-200'
+  },
+  photography: {
+    color: '#6C3483',
+    bg: 'bg-[#6C3483]',
+    ring: 'ring-[#6C3483]/30',
+    lightBg: 'bg-purple-50',
+    border: 'border-purple-200'
+  },
+  '3d-animation': {
+    color: '#223853',
+    bg: 'bg-[#223853]',
+    ring: 'ring-[#223853]/30',
+    lightBg: 'bg-slate-50',
+    border: 'border-slate-200'
+  },
+  miscellaneous: {
+    color: '#0E6251',
+    bg: 'bg-[#0E6251]',
+    ring: 'ring-[#0E6251]/30',
+    lightBg: 'bg-emerald-50',
+    border: 'border-emerald-200'
+  }
+};
 
 export default function CategoryShowcase({ onSelectImage }) {
   const [activeCategory, setActiveCategory] = useState(archiveCategories[0].id);
 
   const currentCategory = archiveCategories.find(c => c.id === activeCategory) || archiveCategories[0];
+  const activeStyle = categoryStyles[currentCategory.id] || categoryStyles.illustration;
 
   return (
     <section id="archive" className="py-24 px-6 sm:px-8 bg-white border-t border-b border-gray-100 scroll-mt-20">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto space-y-12">
         
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <div className="text-center max-w-2xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-orange-50 border border-orange-100 text-orange-600 text-xs font-bold uppercase tracking-wider mb-4">
             <Sparkles className="w-3.5 h-3.5 text-orange-500" />
             <span>Archive & Disciplines</span>
@@ -26,54 +79,84 @@ export default function CategoryShowcase({ onSelectImage }) {
           </p>
         </div>
 
-        {/* Numbered Category Navigation Tabs (Matching Figma Frame 66:884) */}
-        <div className="flex items-center justify-start sm:justify-center gap-4 sm:gap-6 overflow-x-auto pb-4 hide-scrollbar mb-16">
-          {archiveCategories.map((category) => {
-            const isActive = category.id === activeCategory;
-            return (
-              <button
-                key={category.id}
-                onClick={() => setActiveCategory(category.id)}
-                className="flex flex-col items-center gap-2 group flex-shrink-0 focus:outline-none"
-              >
-                {/* Number Circle Badge (Matching Figma design) */}
-                <div
-                  className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center font-extrabold text-sm sm:text-base transition-all duration-300 shadow-md ${
-                    isActive
-                      ? 'bg-brand-pink text-white scale-110 ring-4 ring-pink-100'
-                      : 'bg-white text-gray-700 border-2 border-gray-200 group-hover:border-brand-pink group-hover:text-brand-pink'
-                  }`}
-                >
-                  {category.number}
-                </div>
+        {/* Contents Card Container (Matching Figma Frame 66:884) */}
+        <div className="bg-[#F5F3ED] rounded-3xl p-6 sm:p-10 border border-stone-200/80 shadow-sm relative overflow-hidden">
+          
+          {/* Orange Ribbon Tag on Left (Matching Figma "Contents") */}
+          <div className="mb-8 flex items-center justify-between">
+            <div className="bg-[#E64A19] text-white text-xs sm:text-sm font-extrabold px-5 py-1.5 rounded-r-lg shadow-sm -ml-6 sm:-ml-10 uppercase tracking-wider">
+              Contents
+            </div>
+            <span className="text-xs font-semibold text-stone-500 hidden sm:inline-block">
+              Click any category to switch works
+            </span>
+          </div>
 
-                {/* Category Title */}
-                <span
-                  className={`text-xs font-bold tracking-tight text-center max-w-[90px] transition-colors ${
-                    isActive ? 'text-brand-pink font-extrabold' : 'text-gray-600 group-hover:text-gray-900'
-                  }`}
+          {/* Perfectly Aligned 7 Numbered Circles Row */}
+          <div className="flex items-start justify-start lg:justify-between gap-4 sm:gap-6 overflow-x-auto pb-4 hide-scrollbar pt-2">
+            {archiveCategories.map((category) => {
+              const isActive = category.id === activeCategory;
+              const style = categoryStyles[category.id] || categoryStyles.illustration;
+
+              return (
+                <button
+                  key={category.id}
+                  onClick={() => setActiveCategory(category.id)}
+                  className="flex flex-col items-center flex-1 min-w-[110px] max-w-[140px] group focus:outline-none transition-transform"
                 >
-                  {category.title}
-                </span>
-              </button>
-            );
-          })}
+                  {/* Circle Badge (Top-Aligned Across All Items) */}
+                  <div className="relative flex items-center justify-center h-16 w-16 mb-3">
+                    <div
+                      className={`w-14 h-14 rounded-full flex items-center justify-center font-extrabold text-base text-white transition-all duration-300 shadow-md border-2 border-white ${
+                        style.bg
+                      } ${
+                        isActive
+                          ? 'scale-115 ring-4 ring-offset-2 ring-stone-400 shadow-lg'
+                          : 'opacity-85 hover:opacity-100 hover:scale-105'
+                      }`}
+                    >
+                      {category.number}
+                    </div>
+                  </div>
+
+                  {/* Category Title (Even Height & Balanced Center Alignment) */}
+                  <div className="min-h-[44px] flex items-start justify-center w-full px-1">
+                    <span
+                      className={`text-xs font-bold text-center leading-snug transition-colors ${
+                        isActive ? 'text-stone-900 font-extrabold' : 'text-stone-600 group-hover:text-stone-900'
+                      }`}
+                    >
+                      {category.title}
+                    </span>
+                  </div>
+
+                  {/* Active Indicator Underline */}
+                  <div
+                    className={`h-1 rounded-full transition-all duration-300 mt-1 ${
+                      isActive ? 'w-8 ' + style.bg : 'w-0 bg-transparent'
+                    }`}
+                  />
+                </button>
+              );
+            })}
+          </div>
+
         </div>
 
-        {/* Active Category Display */}
+        {/* Active Category Gallery Showcase */}
         <AnimatePresence mode="wait">
           <motion.div
             key={currentCategory.id}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.25 }}
             className="bg-[#FAFAFC] rounded-3xl p-6 sm:p-10 border border-gray-200/80 shadow-sm"
           >
             {/* Category Header */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-8 border-b border-gray-200 gap-4">
               <div>
-                <span className="text-xs font-bold text-brand-pink uppercase tracking-wider">
+                <span className="text-xs font-bold uppercase tracking-wider" style={{ color: activeStyle.color }}>
                   Category {currentCategory.number}
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-brand-dark">
