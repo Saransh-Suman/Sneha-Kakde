@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, ArrowLeft } from 'lucide-react';
 import CategoryShowcase from '../components/CategoryShowcase';
+import ImageWithSkeleton from '../components/ImageWithSkeleton';
 
 export default function ArchivePage({ onBackToHome, onSelectImage }) {
   useEffect(() => {
@@ -15,9 +16,10 @@ export default function ArchivePage({ onBackToHome, onSelectImage }) {
       <div className="relative w-full h-[300px] sm:h-[420px] lg:h-[480px] bg-neutral-200 overflow-hidden pt-16 sm:pt-20">
         
         {/* Background Sketch Image */}
-        <img
+        <ImageWithSkeleton
           src="/assets/archive_banner.png"
           alt="Sneha Kakde 2025 Sketches Artwork Background"
+          containerClassName="w-full h-full"
           className="w-full h-full object-cover object-top filter grayscale contrast-105 opacity-90 select-none"
         />
 

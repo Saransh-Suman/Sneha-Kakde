@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowLeft, ArrowUpRight, AlertTriangle, Lightbulb, Image as ImageIcon } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
+import ImageWithSkeleton from './ImageWithSkeleton';
 
 export default function CaseStudyModal({ project, onClose, onSelectNext }) {
   useEffect(() => {
@@ -54,9 +55,11 @@ export default function CaseStudyModal({ project, onClose, onSelectNext }) {
 
           {/* Hero Image / Banner */}
           <div className="relative w-full aspect-[16/10] sm:aspect-[21/9] bg-brand-dark overflow-hidden">
-            <img
+            <ImageWithSkeleton
               src={project.coverImage}
               alt={project.title}
+              darkSkeleton={true}
+              containerClassName="w-full h-full"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
@@ -178,7 +181,7 @@ export default function CaseStudyModal({ project, onClose, onSelectNext }) {
                 <div className="space-y-4 sm:space-y-6">
                   {details.gallery.map((g, i) => (
                     <div key={i} className="rounded-xl sm:rounded-2xl overflow-hidden border border-gray-200 shadow-sm bg-gray-50">
-                      <img
+                      <ImageWithSkeleton
                         src={g.url}
                         alt={g.caption || "Case study artifact"}
                         className="w-full h-auto object-cover"

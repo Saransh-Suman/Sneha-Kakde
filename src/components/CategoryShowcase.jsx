@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { archiveCategories } from '../data/portfolioData';
 import { ZoomIn, Maximize2, BookOpen, Eye, Play, ArrowUpRight } from 'lucide-react';
+import ImageWithSkeleton from './ImageWithSkeleton';
 
 const categoryStyles = {
   illustration: {
@@ -78,14 +79,14 @@ export default function CategoryShowcase({ onSelectImage }) {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-1.5 sm:px-6 lg:px-8 space-y-6 sm:space-y-12">
+    <div className="w-full max-w-[1450px] mx-auto px-1 sm:px-6 lg:px-8 space-y-6 sm:space-y-10">
       
       {/* Contents Card Container (Matching Figma Frame 66:884) */}
-      <div className="bg-[#F5F3ED] rounded-xl sm:rounded-3xl p-3 sm:p-8 lg:p-10 border border-stone-200/80 shadow-md relative overflow-hidden">
+      <div className="bg-[#F5F3ED] rounded-xl sm:rounded-3xl p-3 sm:p-7 lg:p-9 border border-stone-200/80 shadow-md relative overflow-hidden">
         
         {/* Orange Ribbon Tag on Left (Matching Figma "Contents") */}
-        <div className="mb-4 sm:mb-8 flex items-center justify-between">
-          <div className="bg-[#E64A19] text-white text-xs sm:text-sm font-extrabold px-3.5 sm:px-5 py-1 sm:py-1.5 rounded-r-lg shadow-sm -ml-3 sm:-ml-8 lg:-ml-10 uppercase tracking-wider">
+        <div className="mb-4 sm:mb-6 flex items-center justify-between">
+          <div className="bg-[#E64A19] text-white text-xs sm:text-sm font-extrabold px-3.5 sm:px-5 py-1 sm:py-1.5 rounded-r-lg shadow-sm -ml-3 sm:-ml-7 lg:-ml-9 uppercase tracking-wider">
             Contents
           </div>
           <span className="text-[11px] sm:text-xs font-semibold text-stone-500 hidden sm:inline-block">
@@ -103,7 +104,7 @@ export default function CategoryShowcase({ onSelectImage }) {
               <button
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
-                className="flex flex-col items-center flex-1 min-w-[76px] sm:min-w-[120px] max-w-[145px] group focus:outline-none transition-transform cursor-pointer flex-shrink-0"
+                className="flex flex-col items-center flex-1 min-w-[76px] sm:min-w-[120px] max-w-[150px] group focus:outline-none transition-transform cursor-pointer flex-shrink-0"
               >
                 {/* Circle Badge with Drop Shadow */}
                 <div className="relative flex items-center justify-center h-11 w-11 sm:h-16 sm:w-16 mb-1.5 sm:mb-3">
@@ -152,10 +153,10 @@ export default function CategoryShowcase({ onSelectImage }) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -15 }}
           transition={{ duration: 0.25 }}
-          className="bg-white rounded-xl sm:rounded-3xl p-2 sm:p-8 lg:p-10 border border-gray-200/90 shadow-xl space-y-4 sm:space-y-8"
+          className="bg-white rounded-xl sm:rounded-3xl p-2 sm:p-6 lg:p-8 border border-gray-200/90 shadow-xl space-y-4 sm:space-y-6"
         >
           {/* Header Bar */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 sm:pb-6 border-b border-gray-100 gap-2 sm:gap-4 px-1 sm:px-0">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 sm:pb-5 border-b border-gray-100 gap-2 sm:gap-4 px-1 sm:px-0">
             <div>
               <div className="inline-flex items-center gap-1.5 sm:gap-2 mb-1">
                 <span className="text-[10px] sm:text-xs font-black uppercase tracking-wider px-2 sm:px-2.5 py-0.5 rounded-full bg-gray-100 text-gray-800">
@@ -163,10 +164,10 @@ export default function CategoryShowcase({ onSelectImage }) {
                 </span>
                 <span className="text-[10px] sm:text-xs font-bold text-gray-400">• High-Resolution Board</span>
               </div>
-              <h3 className="text-lg sm:text-3xl font-extrabold text-brand-dark tracking-tight">
+              <h3 className="text-xl sm:text-3xl font-extrabold text-brand-dark tracking-tight">
                 {currentCategory.title}
               </h3>
-              <p className="text-[11px] sm:text-sm text-gray-600 mt-0.5 sm:mt-1 max-w-2xl">
+              <p className="text-[11px] sm:text-sm text-gray-600 mt-0.5 sm:mt-1 max-w-3xl">
                 {currentCategory.description}
               </p>
             </div>
@@ -227,11 +228,11 @@ export default function CategoryShowcase({ onSelectImage }) {
                       onClick={() => handleOpenBoard(activeSb.title, activeSb.subtitle, activeSb.image)}
                       className="relative w-full rounded-lg sm:rounded-2xl overflow-hidden bg-neutral-100 border border-neutral-200/80 shadow-md group cursor-zoom-in transition-all duration-300 hover:border-brand-pink/50 hover:shadow-2xl"
                     >
-                      <img
+                      <ImageWithSkeleton
                         src={activeSb.image}
                         alt={activeSb.title}
-                        className="w-full h-auto object-contain block select-none"
                         loading="eager"
+                        className="w-full h-auto object-contain block select-none"
                       />
 
                       <div className="absolute top-2.5 right-2.5 sm:top-4 sm:right-4 z-10 opacity-90 group-hover:opacity-100 transition-opacity">
@@ -272,11 +273,11 @@ export default function CategoryShowcase({ onSelectImage }) {
                         }}
                         className="relative w-full rounded-lg sm:rounded-2xl overflow-hidden bg-neutral-100 border border-neutral-200/80 shadow-md group cursor-zoom-in transition-all duration-300 hover:border-brand-pink/50 hover:shadow-2xl"
                       >
-                        <img
+                        <ImageWithSkeleton
                           src={currentCategory.storybooks[1 - activeStorybookIndex]?.image}
                           alt={currentCategory.storybooks[1 - activeStorybookIndex]?.title}
-                          className="w-full h-auto object-contain block select-none"
                           loading="lazy"
+                          className="w-full h-auto object-contain block select-none"
                         />
 
                         <div className="absolute top-2.5 right-2.5 sm:top-4 sm:right-4 z-10 opacity-90 group-hover:opacity-100 transition-opacity">
@@ -299,11 +300,11 @@ export default function CategoryShowcase({ onSelectImage }) {
                 onClick={() => handleOpenBoard()}
                 className="relative w-full rounded-lg sm:rounded-2xl overflow-hidden bg-neutral-100 border border-neutral-200/80 shadow-md group cursor-zoom-in transition-all duration-300 hover:border-brand-pink/50 hover:shadow-2xl"
               >
-                <img
+                <ImageWithSkeleton
                   src={currentCategory.boardImage}
                   alt={`${currentCategory.title} Presentation Board`}
-                  className="w-full h-auto object-contain block select-none"
                   loading="eager"
+                  className="w-full h-auto object-contain block select-none"
                 />
 
                 {/* Hover/Tap Floating Guide Pill */}
@@ -366,3 +367,4 @@ export default function CategoryShowcase({ onSelectImage }) {
     </div>
   );
 }
+

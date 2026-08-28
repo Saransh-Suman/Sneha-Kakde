@@ -14,6 +14,7 @@ import {
   Sparkles, 
   Eye 
 } from 'lucide-react';
+import ImageWithSkeleton from './ImageWithSkeleton';
 
 const allInterestCards = [
   {
@@ -96,9 +97,10 @@ export default function About({ onSelectCraft }) {
           >
             <div className="relative group max-w-[280px] sm:max-w-sm w-full">
               <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border-4 border-white ring-1 ring-gray-200">
-                <img
+                <ImageWithSkeleton
                   src="/assets/sneha_profile.png"
                   alt="Sneha Kakde"
+                  containerClassName="w-full h-auto"
                   className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
@@ -217,9 +219,10 @@ export default function About({ onSelectCraft }) {
                   onClick={() => onSelectCraft(craft)}
                   className="flex-shrink-0 w-56 sm:w-64 aspect-[3/4] rounded-2xl overflow-hidden shadow-md hover:shadow-2xl border border-gray-200 cursor-pointer relative group bg-gray-100 transition-all duration-300 hover:scale-[1.03]"
                 >
-                  <img
+                  <ImageWithSkeleton
                     src={craft.image}
                     alt={craft.title}
+                    containerClassName="w-full h-full"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   

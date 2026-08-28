@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { personalInfo } from '../data/portfolioData';
 import { ArrowUpRight, Mail, Phone, Heart, Sparkles } from 'lucide-react';
+import ImageWithSkeleton from './ImageWithSkeleton';
 
 export default function Footer({ onOpenContact, onNavigate }) {
   const handleNavClick = (sectionId) => {
@@ -29,9 +30,11 @@ export default function Footer({ onOpenContact, onNavigate }) {
 
       {/* Top Lion Art Banner (Matching Figma frame 63:207) */}
       <div className="w-full h-36 sm:h-64 md:h-80 relative overflow-hidden bg-brand-dark">
-        <img
+        <ImageWithSkeleton
           src="/assets/footer_banner.png"
           alt="Sneha Kakde Lion Artwork Banner"
+          darkSkeleton={true}
+          containerClassName="w-full h-full"
           className="w-full h-full object-cover object-center filter brightness-95 hover:scale-105 transition-transform duration-700"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />

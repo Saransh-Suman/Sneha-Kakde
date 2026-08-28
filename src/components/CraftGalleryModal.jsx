@@ -1,26 +1,37 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ZoomIn, ZoomOut, RotateCcw, Sparkles } from 'lucide-react';
+import { X, ZoomIn, ZoomOut, RotateCcw, Sparkles, Maximize, Minimize2 } from 'lucide-react';
+import ImageWithSkeleton from './ImageWithSkeleton';
 
 export default function CraftGalleryModal({ item, onClose }) {
   const [scale, setScale] = useState(1);
+  const [viewMode, setViewMode] = useState('fit-width'); // 'fit-width' or 'fit-screen'
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const dragStartRef = useRef({ x: 0, y: 0 });
   const containerRef = useRef(null);
+  const lastTapRef = useRef(0);
+  const pinchStartDistRef = useRef(0);
+  const pinchStartScaleRef = useRef(1);
 
+  // Reset state when opening a new item
   useEffect(() => {
     if (item) {
       document.body.style.overflow = 'hidden';
       setScale(1);
+      setViewMode('fit-width');
       setPosition({ x: 0, y: 0 });
+      if (containerRef.current) {
+        containerRef.current.scrollTop = 0;
+        containerRef.current.scrollLeft = 0;
+      }
     }
     return () => {
       document.body.style.overflow = 'unset';
     };
   }, [item]);
 
-  // Keyboard navigation & zoom shortcuts
+  // Keyboard shortcuts
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (!item) return;
@@ -33,71 +44,80 @@ export default function CraftGalleryModal({ item, onClose }) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [item, scale]);
 
-  // Non-passive wheel and pinch touch zoom listeners (fixes "Unable to preventDefault inside passive event listener")
+  // Native non-passive touch pinch & wheel listeners for fluid zoom & pan
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    let initialDistance = 0;
-    let initialScale = 1;
-
-    const getDistance = (touches) => {
-      const dx = touches[0].clientX - touches[1].clientX;
-      const dy = touches[0].clientY - touches[1].clientY;
+    const getDistance = (t1, t2) => {
+      const dx = t1.clientX - t2.clientX;
+      const dy = t1.clientY - t2.clientY;
       return Math.sqrt(dx * dx + dy * dy);
     };
 
+    // Trackpad / Mousewheel pinch or Ctrl-zoom
     const handleNativeWheel = (e) => {
       if (e.ctrlKey || e.metaKey) {
         e.preventDefault();
-        const delta = e.deltaY < 0 ? 0.35 : -0.35;
+        const delta = e.deltaY < 0 ? 0.25 : -0.25;
         setScale((prev) => {
-          const next = Math.min(Math.max(prev + delta, 1), 4);
+          const next = Math.min(Math.max(Number((prev + delta).toFixed(2)), 1), 4);
           if (next === 1) setPosition({ x: 0, y: 0 });
           return next;
         });
       }
     };
 
-    const handleNativeTouchStart = (e) => {
+    // 2-finger pinch start
+    const handleTouchStart = (e) => {
       if (e.touches.length === 2) {
-        initialDistance = getDistance(e.touches);
-        initialScale = scale;
+        pinchStartDistRef.current = getDistance(e.touches[0], e.touches[1]);
+        pinchStartScaleRef.current = scale;
       }
     };
 
-    const handleNativeTouchMove = (e) => {
-      if (e.touches.length === 2) {
+    // 2-finger pinch move
+    const handleTouchMove = (e) => {
+      if (e.touches.length === 2 && pinchStartDistRef.current > 0) {
         e.preventDefault();
-        const currentDistance = getDistance(e.touches);
-        if (initialDistance > 0) {
-          const newScale = Math.min(Math.max(initialScale * (currentDistance / initialDistance), 1), 4);
-          setScale(newScale);
-          if (newScale === 1) setPosition({ x: 0, y: 0 });
+        const dist = getDistance(e.touches[0], e.touches[1]);
+        const factor = dist / pinchStartDistRef.current;
+        const newScale = Math.min(Math.max(Number((pinchStartScaleRef.current * factor).toFixed(2)), 1), 4);
+        setScale(newScale);
+        if (newScale === 1) {
+          setPosition({ x: 0, y: 0 });
         }
       }
     };
 
+    const handleTouchEnd = (e) => {
+      if (e.touches.length < 2) {
+        pinchStartDistRef.current = 0;
+      }
+    };
+
     container.addEventListener('wheel', handleNativeWheel, { passive: false });
-    container.addEventListener('touchstart', handleNativeTouchStart, { passive: true });
-    container.addEventListener('touchmove', handleNativeTouchMove, { passive: false });
+    container.addEventListener('touchstart', handleTouchStart, { passive: true });
+    container.addEventListener('touchmove', handleTouchMove, { passive: false });
+    container.addEventListener('touchend', handleTouchEnd, { passive: true });
 
     return () => {
       container.removeEventListener('wheel', handleNativeWheel);
-      container.removeEventListener('touchstart', handleNativeTouchStart);
-      container.removeEventListener('touchmove', handleNativeTouchMove);
+      container.removeEventListener('touchstart', handleTouchStart);
+      container.removeEventListener('touchmove', handleTouchMove);
+      container.removeEventListener('touchend', handleTouchEnd);
     };
   }, [scale]);
 
   if (!item) return null;
 
   const handleZoomIn = () => {
-    setScale((prev) => Math.min(prev + 0.5, 4));
+    setScale((prev) => Math.min(Number((prev + 0.5).toFixed(2)), 4));
   };
 
   const handleZoomOut = () => {
     setScale((prev) => {
-      const next = Math.max(prev - 0.5, 1);
+      const next = Math.max(Number((prev - 0.5).toFixed(2)), 1);
       if (next === 1) setPosition({ x: 0, y: 0 });
       return next;
     });
@@ -108,7 +128,14 @@ export default function CraftGalleryModal({ item, onClose }) {
     setPosition({ x: 0, y: 0 });
   };
 
-  const handleDoubleClick = () => {
+  const toggleViewMode = () => {
+    setScale(1);
+    setPosition({ x: 0, y: 0 });
+    setViewMode((prev) => (prev === 'fit-width' ? 'fit-screen' : 'fit-width'));
+  };
+
+  // Double click / Double tap to toggle zoom
+  const handleDoubleInteraction = (e) => {
     if (scale > 1) {
       handleResetZoom();
     } else {
@@ -116,6 +143,7 @@ export default function CraftGalleryModal({ item, onClose }) {
     }
   };
 
+  // Mouse pan support when zoomed
   const handleMouseDown = (e) => {
     if (scale > 1) {
       setIsDragging(true);
@@ -139,8 +167,16 @@ export default function CraftGalleryModal({ item, onClose }) {
     setIsDragging(false);
   };
 
-  // Touch Support for Mobile Drag / Pan (Single finger)
-  const handleTouchStart = (e) => {
+  // Single touch pan & double-tap zoom
+  const handleTouchStartSingle = (e) => {
+    const now = Date.now();
+    if (now - lastTapRef.current < 300) {
+      handleDoubleInteraction(e);
+      lastTapRef.current = 0;
+      return;
+    }
+    lastTapRef.current = now;
+
     if (scale > 1 && e.touches.length === 1) {
       setIsDragging(true);
       dragStartRef.current = {
@@ -150,7 +186,7 @@ export default function CraftGalleryModal({ item, onClose }) {
     }
   };
 
-  const handleTouchMove = (e) => {
+  const handleTouchMoveSingle = (e) => {
     if (isDragging && scale > 1 && e.touches.length === 1) {
       setPosition({
         x: e.touches[0].clientX - dragStartRef.current.x,
@@ -159,49 +195,67 @@ export default function CraftGalleryModal({ item, onClose }) {
     }
   };
 
-  const handleTouchEnd = () => {
+  const handleTouchEndSingle = () => {
     setIsDragging(false);
   };
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 overflow-hidden bg-black/92 backdrop-blur-md flex flex-col justify-between items-center p-1 sm:p-6">
+      <div className="fixed inset-0 z-50 overflow-hidden bg-black/95 backdrop-blur-md flex flex-col justify-between items-center p-1 sm:p-4">
         
         {/* Backdrop click to close */}
         <div className="fixed inset-0 -z-10" onClick={onClose} />
 
         {/* Top Floating Header & Controls */}
-        <div className="w-full max-w-6xl flex items-center justify-between z-20 pt-1 sm:pt-2 px-1.5 sm:px-2 text-white gap-2">
+        <div className="w-full max-w-6xl flex items-center justify-between z-20 pt-1 sm:pt-2 px-1 sm:px-2 text-white gap-2">
+          
+          {/* Badge & Mode Info */}
           <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
-            <div className="inline-flex items-center gap-1.5 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-pink-500/20 border border-pink-500/30 text-pink-400 text-[10px] sm:text-xs font-bold uppercase tracking-wider whitespace-nowrap">
+            <div className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-pink-500/20 border border-pink-500/30 text-pink-400 text-[10px] sm:text-xs font-bold uppercase tracking-wider whitespace-nowrap">
               <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
               <span>Viewer</span>
             </div>
-            <span className="text-[11px] text-neutral-400 hidden sm:inline-block truncate">
-              {scale > 1 ? 'Drag to pan • Double-click to reset' : 'Double-click to zoom'}
-            </span>
+
+            {/* Mode Switcher Pill */}
+            <button
+              onClick={toggleViewMode}
+              className="inline-flex items-center gap-1 px-2.5 sm:px-3 py-1 rounded-full bg-neutral-800 hover:bg-neutral-700 text-neutral-200 text-[10px] sm:text-xs font-bold transition-colors cursor-pointer border border-neutral-700"
+              title={viewMode === 'fit-width' ? 'Switch to Fit Screen overview' : 'Switch to Fit Width readable view'}
+            >
+              {viewMode === 'fit-width' ? (
+                <>
+                  <Minimize2 className="w-3 h-3 text-pink-400" />
+                  <span>Fit Width</span>
+                </>
+              ) : (
+                <>
+                  <Maximize className="w-3 h-3 text-pink-400" />
+                  <span>Fit Screen</span>
+                </>
+              )}
+            </button>
           </div>
 
-          {/* Floating Zoom & Action Pill Controls */}
+          {/* Floating Zoom Controls & Close Button */}
           <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
             <div className="flex items-center gap-0.5 sm:gap-1 bg-neutral-900/90 border border-neutral-700/80 rounded-full px-1.5 sm:px-2 py-0.5 sm:py-1 shadow-xl backdrop-blur-md">
               <button
                 onClick={handleZoomOut}
                 disabled={scale <= 1}
-                className="p-1 sm:p-1.5 rounded-full hover:bg-neutral-800 text-neutral-300 disabled:opacity-40 disabled:hover:bg-transparent transition-colors cursor-pointer"
+                className="p-1 sm:p-1.5 rounded-full hover:bg-neutral-800 text-neutral-300 disabled:opacity-35 disabled:hover:bg-transparent transition-colors cursor-pointer"
                 title="Zoom Out (-)"
               >
                 <ZoomOut className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </button>
               
-              <span className="text-[10px] sm:text-xs font-mono font-bold px-1 sm:px-2 text-neutral-200 min-w-[34px] sm:min-w-[45px] text-center">
+              <span className="text-[10px] sm:text-xs font-mono font-bold px-1 sm:px-2 text-neutral-200 min-w-[34px] sm:min-w-[44px] text-center">
                 {Math.round(scale * 100)}%
               </span>
 
               <button
                 onClick={handleZoomIn}
                 disabled={scale >= 4}
-                className="p-1 sm:p-1.5 rounded-full hover:bg-neutral-800 text-neutral-300 disabled:opacity-40 disabled:hover:bg-transparent transition-colors cursor-pointer"
+                className="p-1 sm:p-1.5 rounded-full hover:bg-neutral-800 text-neutral-300 disabled:opacity-35 disabled:hover:bg-transparent transition-colors cursor-pointer"
                 title="Zoom In (+)"
               >
                 <ZoomIn className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
@@ -228,19 +282,20 @@ export default function CraftGalleryModal({ item, onClose }) {
               <X className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
           </div>
+
         </div>
 
-        {/* Center Canvas: Fully Scrollable and Zoomable Image Viewport */}
+        {/* Center Viewport: Natural Scroll & Zoom Canvas */}
         <div 
           ref={containerRef}
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseUp}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
-          className={`relative w-full max-w-6xl flex-1 my-1 sm:my-3 rounded-lg sm:rounded-3xl bg-neutral-950/80 border border-neutral-800/80 overflow-auto flex items-center justify-center p-0.5 sm:p-8 select-none touch-none ${
+          onTouchStart={handleTouchStartSingle}
+          onTouchMove={handleTouchMoveSingle}
+          onTouchEnd={handleTouchEndSingle}
+          className={`relative w-full max-w-6xl flex-1 my-1 sm:my-3 rounded-lg sm:rounded-2xl bg-neutral-950/85 border border-neutral-800/80 overflow-auto flex items-start justify-center p-1 sm:p-4 select-none hide-scrollbar overscroll-contain ${
             scale > 1 ? (isDragging ? 'cursor-grabbing' : 'cursor-grab') : 'cursor-zoom-in'
           }`}
         >
@@ -252,39 +307,52 @@ export default function CraftGalleryModal({ item, onClose }) {
             }}
             transition={{
               type: isDragging ? false : 'spring',
-              stiffness: 300,
-              damping: 30
+              stiffness: 350,
+              damping: 32
             }}
-            onDoubleClick={handleDoubleClick}
-            className="relative flex items-center justify-center max-h-full max-w-full origin-center transition-transform"
+            onDoubleClick={handleDoubleInteraction}
+            className={`relative flex items-center justify-center transition-transform origin-center ${
+              viewMode === 'fit-width' && scale === 1
+                ? 'w-full max-w-5xl my-auto'
+                : 'max-w-full max-h-full my-auto'
+            }`}
           >
-            <img
+            <ImageWithSkeleton
               src={item.image}
               alt={item.title}
+              darkSkeleton={true}
               draggable={false}
-              className="max-h-[78vh] sm:max-h-[74vh] max-w-full w-auto h-auto object-contain rounded-md sm:rounded-lg shadow-2xl pointer-events-none"
+              loading="eager"
+              containerClassName={`rounded-md sm:rounded-lg shadow-2xl overflow-hidden ${
+                viewMode === 'fit-width' && scale === 1 ? 'w-full' : ''
+              }`}
+              className={
+                viewMode === 'fit-width' && scale === 1
+                  ? 'w-full h-auto object-contain block'
+                  : 'max-h-[78vh] sm:max-h-[82vh] w-auto max-w-full h-auto object-contain block'
+              }
             />
           </motion.div>
         </div>
 
         {/* Bottom Information Footer Bar */}
-        <div className="w-full max-w-6xl bg-neutral-900/90 border border-neutral-800 rounded-lg sm:rounded-2xl px-3 sm:px-6 py-2 sm:py-4 text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1.5 sm:gap-3 backdrop-blur-md">
+        <div className="w-full max-w-6xl bg-neutral-900/95 border border-neutral-800 rounded-lg sm:rounded-2xl px-3 sm:px-6 py-2 sm:py-3.5 text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1.5 sm:gap-3 backdrop-blur-md">
           <div className="min-w-0">
-            <h3 className="text-xs sm:text-lg font-bold text-white tracking-tight truncate">
+            <h3 className="text-xs sm:text-base font-bold text-white tracking-tight truncate">
               {item.title}
             </h3>
-            <p className="text-[10px] sm:text-sm text-neutral-400 mt-0.5 line-clamp-1">
+            <p className="text-[10px] sm:text-xs text-neutral-400 mt-0.5 line-clamp-1">
               {item.subtitle}
             </p>
           </div>
 
           <div className="flex items-center justify-between sm:justify-end w-full sm:w-auto gap-2">
-            <span className="text-[10px] text-neutral-500 hidden md:inline-block">
-              Tip: Drag image when zoomed in
+            <span className="text-[10px] text-neutral-400 hidden sm:inline-block">
+              {scale > 1 ? 'Drag to pan • Double-click to reset' : 'Pinch or scroll to zoom'}
             </span>
             <button
               onClick={onClose}
-              className="w-full sm:w-auto px-4 sm:px-5 py-1 sm:py-2 rounded-full bg-white text-black text-xs font-bold hover:bg-neutral-200 transition-all active:scale-95 cursor-pointer text-center"
+              className="w-full sm:w-auto px-4 sm:px-5 py-1 sm:py-1.5 rounded-full bg-white text-black text-xs font-bold hover:bg-neutral-200 transition-all active:scale-95 cursor-pointer text-center"
             >
               Close
             </button>

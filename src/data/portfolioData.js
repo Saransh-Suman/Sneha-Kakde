@@ -198,6 +198,13 @@ export const craftGallery = [
     subtitle: "Felicitation for leadership on International Women's Day",
     image: "/assets/craft_award.png",
     aspect: "portrait"
+  },
+  {
+    id: 15,
+    title: "Event Anchoring & Stage Hosting",
+    subtitle: "Hosting formal ceremonies and cultural stage programs",
+    image: "/assets/craft_anchoring.png",
+    aspect: "portrait"
   }
 ];
 

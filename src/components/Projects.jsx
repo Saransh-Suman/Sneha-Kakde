@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { featuredProjects } from '../data/portfolioData';
 import { ArrowRight, Layers, Eye } from 'lucide-react';
+import ImageWithSkeleton from './ImageWithSkeleton';
 
 export default function Projects({ onSelectProject }) {
   const [filter, setFilter] = useState('all');
@@ -46,9 +47,11 @@ export default function Projects({ onSelectProject }) {
               <div className="relative w-full aspect-[16/10] bg-[#E2E4E8] rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm group-hover:shadow-2xl group-hover:-translate-y-1.5 transition-all duration-400 ease-out border border-gray-200/70">
                 
                 {/* Background Project Image */}
-                <img
+                <ImageWithSkeleton
                   src={project.coverImage}
                   alt={project.title}
+                  loading="lazy"
+                  containerClassName="w-full h-full"
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
 
