@@ -12,19 +12,37 @@
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 90px;
+    scroll-padding-top: 80px;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    overflow-x: hidden;
+    width: 100%;
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     background-color: #FFFFFF;
     color: #1E1E1E;
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  #root {
+    overflow-x: hidden;
+    width: 100%;
   }
 
   ::selection {
     background-color: #E6004C;
     color: #FFFFFF;
+  }
+
+  img, video {
+    max-width: 100%;
+    height: auto;
   }
 }
 
@@ -39,8 +57,8 @@
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -84,14 +102,14 @@
 
 /* Glass effect */
 .glass-nav {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .glass-dark {
-  background: rgba(17, 17, 17, 0.85);
+  background: rgba(17, 17, 17, 0.9);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -115,3 +133,36 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+/* Continuous Marquee Sliding Animations (No JS snapping) */
+@keyframes marquee-scroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee-interests {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 45s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-crafts {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 32s linear infinite;
+  will-change: transform;
+}
+
+/* Pause animation seamlessly in-place without resetting transform */
+.marquee-container:hover .animate-marquee-interests,
+.marquee-container:hover .animate-marquee-crafts,
+.marquee-container:active .animate-marquee-interests,
+.marquee-container:active .animate-marquee-crafts {
+  animation-play-state: paused;
+}
+

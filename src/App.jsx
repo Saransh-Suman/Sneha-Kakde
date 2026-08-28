@@ -1,28 +1,57 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Projects from './components/Projects';
-import CategoryShowcase from './components/CategoryShowcase';
 import About from './components/About';
 import Footer from './components/Footer';
+import ArchivePage from './pages/ArchivePage';
 import CaseStudyModal from './components/CaseStudyModal';
 import ContactModal from './components/ContactModal';
 import CraftGalleryModal from './components/CraftGalleryModal';
 import { ArrowUp } from 'lucide-react';
 
 export default function App() {
+  const [currentView, setCurrentView] = useState(() => {
+    return window.location.hash === '#archive' ? 'archive' : 'home';
+  });
   const [selectedProject, setSelectedProject] = useState(null);
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [selectedCraft, setSelectedCraft] = useState(null);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
-  React.useEffect(() => {
+  // Sync with browser URL hash
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === '#archive') {
+        setCurrentView('archive');
+      } else if (window.location.hash === '' || window.location.hash === '#home' || !window.location.hash.startsWith('#archive')) {
+        if (currentView === 'archive' && window.location.hash !== '#archive') {
+          setCurrentView('home');
+        }
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, [currentView]);
+
+  useEffect(() => {
     const checkScroll = () => {
       setShowScrollTop(window.scrollY > 400);
     };
     window.addEventListener('scroll', checkScroll);
     return () => window.removeEventListener('scroll', checkScroll);
   }, []);
+
+  const navigateTo = (view) => {
+    setCurrentView(view);
+    if (view === 'archive') {
+      window.location.hash = 'archive';
+    } else {
+      window.location.hash = '';
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -33,31 +62,39 @@ export default function App() {
       
       {/* Sticky Header Navigation */}
       <Navbar 
+        currentView={currentView}
+        onNavigate={navigateTo}
         onOpenContact={() => setIsContactOpen(true)} 
       />
 
-      {/* Main Sections */}
+      {/* Main Content Router */}
       <main>
-        <Hero 
-          onOpenContact={() => setIsContactOpen(true)} 
-        />
-        
-        <Projects 
-          onSelectProject={(project) => setSelectedProject(project)} 
-        />
+        {currentView === 'home' ? (
+          <>
+            <Hero 
+              onOpenContact={() => setIsContactOpen(true)} 
+            />
+            
+            <Projects 
+              onSelectProject={(project) => setSelectedProject(project)} 
+            />
 
-        <About 
-          onSelectCraft={(craft) => setSelectedCraft(craft)} 
-        />
-
-        <CategoryShowcase 
-          onSelectImage={(item) => setSelectedCraft(item)} 
-        />
+            <About 
+              onSelectCraft={(craft) => setSelectedCraft(craft)} 
+            />
+          </>
+        ) : (
+          <ArchivePage 
+            onBackToHome={() => navigateTo('home')}
+            onSelectImage={(item) => setSelectedCraft(item)}
+          />
+        )}
       </main>
 
       {/* Footer & Contact Strip */}
       <Footer 
         onOpenContact={() => setIsContactOpen(true)} 
+        onNavigate={navigateTo}
       />
 
       {/* Interactive Modals */}
@@ -80,7 +117,7 @@ export default function App() {
       {showScrollTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-6 right-6 z-40 p-3 rounded-full bg-brand-dark hover:bg-black text-white shadow-xl hover:scale-110 active:scale-95 transition-all border border-gray-700"
+          className="fixed bottom-6 right-6 z-40 p-3 rounded-full bg-brand-dark hover:bg-black text-white shadow-xl hover:scale-110 active:scale-95 transition-all border border-gray-700 cursor-pointer"
           aria-label="Scroll to top"
         >
           <ArrowUp className="w-5 h-5 text-pink-400" />

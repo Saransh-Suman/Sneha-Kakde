@@ -1,52 +1,59 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { archiveCategories } from '../data/portfolioData';
-import { Sparkles, Eye } from 'lucide-react';
+import { ZoomIn, Maximize2, BookOpen, Eye, Play, ArrowUpRight } from 'lucide-react';
 
 const categoryStyles = {
   illustration: {
+    number: '01',
     color: '#E6004C',
     bg: 'bg-[#E6004C]',
     ring: 'ring-[#E6004C]/30',
-    lightBg: 'bg-red-50',
-    border: 'border-red-200'
+    lightBg: 'bg-pink-50',
+    border: 'border-pink-200'
   },
   'graphic-design': {
-    color: '#EAA221',
-    bg: 'bg-[#EAA221]',
-    ring: 'ring-[#EAA221]/30',
+    number: '02',
+    color: '#F39C12',
+    bg: 'bg-[#F39C12]',
+    ring: 'ring-[#F39C12]/30',
     lightBg: 'bg-amber-50',
     border: 'border-amber-200'
   },
   'character-design': {
-    color: '#1EA896',
-    bg: 'bg-[#1EA896]',
-    ring: 'ring-[#1EA896]/30',
+    number: '03',
+    color: '#16A085',
+    bg: 'bg-[#16A085]',
+    ring: 'ring-[#16A085]/30',
     lightBg: 'bg-teal-50',
     border: 'border-teal-200'
   },
   'product-design': {
-    color: '#2B78C5',
-    bg: 'bg-[#2B78C5]',
-    ring: 'ring-[#2B78C5]/30',
+    number: '04',
+    color: '#2980B9',
+    bg: 'bg-[#2980B9]',
+    ring: 'ring-[#2980B9]/30',
     lightBg: 'bg-blue-50',
     border: 'border-blue-200'
   },
   photography: {
-    color: '#6C3483',
-    bg: 'bg-[#6C3483]',
-    ring: 'ring-[#6C3483]/30',
+    number: '05',
+    color: '#8E44AD',
+    bg: 'bg-[#8E44AD]',
+    ring: 'ring-[#8E44AD]/30',
     lightBg: 'bg-purple-50',
     border: 'border-purple-200'
   },
   '3d-animation': {
-    color: '#223853',
-    bg: 'bg-[#223853]',
-    ring: 'ring-[#223853]/30',
+    number: '06',
+    color: '#2C3E50',
+    bg: 'bg-[#2C3E50]',
+    ring: 'ring-[#2C3E50]/30',
     lightBg: 'bg-slate-50',
     border: 'border-slate-200'
   },
   miscellaneous: {
+    number: '07',
     color: '#0E6251',
     bg: 'bg-[#0E6251]',
     ring: 'ring-[#0E6251]/30',
@@ -57,157 +64,305 @@ const categoryStyles = {
 
 export default function CategoryShowcase({ onSelectImage }) {
   const [activeCategory, setActiveCategory] = useState(archiveCategories[0].id);
+  const [activeStorybookIndex, setActiveStorybookIndex] = useState(0);
 
   const currentCategory = archiveCategories.find(c => c.id === activeCategory) || archiveCategories[0];
   const activeStyle = categoryStyles[currentCategory.id] || categoryStyles.illustration;
 
+  const handleOpenBoard = (title, subtitle, image) => {
+    onSelectImage({
+      title: title || `${currentCategory.title} (Category ${currentCategory.number})`,
+      subtitle: subtitle || currentCategory.description,
+      image: image || currentCategory.boardImage
+    });
+  };
+
   return (
-    <section id="archive" className="pt-12 pb-24 px-6 sm:px-8 bg-white border-t border-b border-gray-100 scroll-mt-20">
-      <div className="max-w-7xl mx-auto space-y-12">
+    <div className="max-w-7xl mx-auto px-1.5 sm:px-6 lg:px-8 space-y-6 sm:space-y-12">
+      
+      {/* Contents Card Container (Matching Figma Frame 66:884) */}
+      <div className="bg-[#F5F3ED] rounded-xl sm:rounded-3xl p-3 sm:p-8 lg:p-10 border border-stone-200/80 shadow-md relative overflow-hidden">
         
-        {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-orange-50 border border-orange-100 text-orange-600 text-xs font-bold uppercase tracking-wider mb-4">
-            <Sparkles className="w-3.5 h-3.5 text-orange-500" />
-            <span>Archive & Disciplines</span>
+        {/* Orange Ribbon Tag on Left (Matching Figma "Contents") */}
+        <div className="mb-4 sm:mb-8 flex items-center justify-between">
+          <div className="bg-[#E64A19] text-white text-xs sm:text-sm font-extrabold px-3.5 sm:px-5 py-1 sm:py-1.5 rounded-r-lg shadow-sm -ml-3 sm:-ml-8 lg:-ml-10 uppercase tracking-wider">
+            Contents
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-dark tracking-tight mb-4">
-            Portfolio Contents
-          </h2>
-          <p className="text-gray-600 text-sm sm:text-base">
-            Explore works across seven specialized disciplines from illustration to 3D character design and physical crafts.
-          </p>
+          <span className="text-[11px] sm:text-xs font-semibold text-stone-500 hidden sm:inline-block">
+            Click any discipline circle to view its full presentation board
+          </span>
         </div>
 
-        {/* Contents Card Container (Matching Figma Frame 66:884) */}
-        <div className="bg-[#F5F3ED] rounded-3xl p-6 sm:p-10 border border-stone-200/80 shadow-sm relative overflow-hidden">
-          
-          {/* Orange Ribbon Tag on Left (Matching Figma "Contents") */}
-          <div className="mb-8 flex items-center justify-between">
-            <div className="bg-[#E64A19] text-white text-xs sm:text-sm font-extrabold px-5 py-1.5 rounded-r-lg shadow-sm -ml-6 sm:-ml-10 uppercase tracking-wider">
-              Contents
-            </div>
-            <span className="text-xs font-semibold text-stone-500 hidden sm:inline-block">
-              Click any category to switch works
-            </span>
-          </div>
+        {/* 7 Numbered Circles Row (01 - 07 Disciplines) */}
+        <div className="flex items-start justify-start lg:justify-between gap-2 sm:gap-6 overflow-x-auto pb-2 hide-scrollbar pt-0.5 overscroll-x-contain">
+          {archiveCategories.map((category) => {
+            const isActive = category.id === activeCategory;
+            const style = categoryStyles[category.id] || categoryStyles.illustration;
 
-          {/* Perfectly Aligned 7 Numbered Circles Row */}
-          <div className="flex items-start justify-start lg:justify-between gap-4 sm:gap-6 overflow-x-auto pb-4 hide-scrollbar pt-2">
-            {archiveCategories.map((category) => {
-              const isActive = category.id === activeCategory;
-              const style = categoryStyles[category.id] || categoryStyles.illustration;
-
-              return (
-                <button
-                  key={category.id}
-                  onClick={() => setActiveCategory(category.id)}
-                  className="flex flex-col items-center flex-1 min-w-[110px] max-w-[140px] group focus:outline-none transition-transform"
-                >
-                  {/* Circle Badge (Top-Aligned Across All Items) */}
-                  <div className="relative flex items-center justify-center h-16 w-16 mb-3">
-                    <div
-                      className={`w-14 h-14 rounded-full flex items-center justify-center font-extrabold text-base text-white transition-all duration-300 shadow-md border-2 border-white ${
-                        style.bg
-                      } ${
-                        isActive
-                          ? 'scale-115 ring-4 ring-offset-2 ring-stone-400 shadow-lg'
-                          : 'opacity-85 hover:opacity-100 hover:scale-105'
-                      }`}
-                    >
-                      {category.number}
-                    </div>
-                  </div>
-
-                  {/* Category Title (Even Height & Balanced Center Alignment) */}
-                  <div className="min-h-[44px] flex items-start justify-center w-full px-1">
-                    <span
-                      className={`text-xs font-bold text-center leading-snug transition-colors ${
-                        isActive ? 'text-stone-900 font-extrabold' : 'text-stone-600 group-hover:text-stone-900'
-                      }`}
-                    >
-                      {category.title}
-                    </span>
-                  </div>
-
-                  {/* Active Indicator Underline */}
+            return (
+              <button
+                key={category.id}
+                onClick={() => setActiveCategory(category.id)}
+                className="flex flex-col items-center flex-1 min-w-[76px] sm:min-w-[120px] max-w-[145px] group focus:outline-none transition-transform cursor-pointer flex-shrink-0"
+              >
+                {/* Circle Badge with Drop Shadow */}
+                <div className="relative flex items-center justify-center h-11 w-11 sm:h-16 sm:w-16 mb-1.5 sm:mb-3">
                   <div
-                    className={`h-1 rounded-full transition-all duration-300 mt-1 ${
-                      isActive ? 'w-8 ' + style.bg : 'w-0 bg-transparent'
+                    className={`w-10 h-10 sm:w-14 sm:h-14 rounded-full flex items-center justify-center font-extrabold text-xs sm:text-base text-white transition-all duration-300 shadow-md border-2 border-white ${
+                      style.bg
+                    } ${
+                      isActive
+                        ? 'scale-110 sm:scale-115 ring-4 ring-offset-2 ring-stone-400 shadow-xl'
+                        : 'opacity-85 hover:opacity-100 hover:scale-105'
                     }`}
-                  />
-                </button>
-              );
-            })}
-          </div>
+                  >
+                    {category.number}
+                  </div>
+                </div>
 
+                {/* Category Title */}
+                <div className="min-h-[34px] sm:min-h-[44px] flex items-start justify-center w-full px-0.5">
+                  <span
+                    className={`text-[9.5px] sm:text-xs font-bold text-center leading-tight sm:leading-snug transition-colors ${
+                      isActive ? 'text-stone-950 font-black' : 'text-stone-600 group-hover:text-stone-900'
+                    }`}
+                  >
+                    {category.title}
+                  </span>
+                </div>
+
+                {/* Active Indicator Underline */}
+                <div
+                  className={`h-1 rounded-full transition-all duration-300 mt-0.5 sm:mt-1 ${
+                    isActive ? 'w-7 sm:w-10 ' + style.bg : 'w-0 bg-transparent'
+                  }`}
+                />
+              </button>
+            );
+          })}
         </div>
 
-        {/* Active Category Gallery Showcase */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentCategory.id}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.25 }}
-            className="bg-[#FAFAFC] rounded-3xl p-6 sm:p-10 border border-gray-200/80 shadow-sm"
-          >
-            {/* Category Header */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-8 border-b border-gray-200 gap-4">
-              <div>
-                <span className="text-xs font-bold uppercase tracking-wider" style={{ color: activeStyle.color }}>
+      </div>
+
+      {/* Full Presentation Board Showcase for Selected Discipline */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentCategory.id}
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -15 }}
+          transition={{ duration: 0.25 }}
+          className="bg-white rounded-xl sm:rounded-3xl p-2 sm:p-8 lg:p-10 border border-gray-200/90 shadow-xl space-y-4 sm:space-y-8"
+        >
+          {/* Header Bar */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 sm:pb-6 border-b border-gray-100 gap-2 sm:gap-4 px-1 sm:px-0">
+            <div>
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 mb-1">
+                <span className="text-[10px] sm:text-xs font-black uppercase tracking-wider px-2 sm:px-2.5 py-0.5 rounded-full bg-gray-100 text-gray-800">
                   Category {currentCategory.number}
                 </span>
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-brand-dark">
-                  {currentCategory.title}
-                </h3>
+                <span className="text-[10px] sm:text-xs font-bold text-gray-400">• High-Resolution Board</span>
               </div>
-              <p className="text-sm text-gray-600 max-w-md">
+              <h3 className="text-lg sm:text-3xl font-extrabold text-brand-dark tracking-tight">
+                {currentCategory.title}
+              </h3>
+              <p className="text-[11px] sm:text-sm text-gray-600 mt-0.5 sm:mt-1 max-w-2xl">
                 {currentCategory.description}
               </p>
             </div>
 
-            {/* Gallery Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {currentCategory.items.map((item, idx) => (
-                <motion.div
-                  key={idx}
-                  whileHover={{ y: -6 }}
-                  transition={{ duration: 0.2 }}
-                  onClick={() => onSelectImage(item)}
-                  className="group cursor-pointer bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-gray-200/80 transition-all flex flex-col"
-                >
-                  <div className="relative aspect-[4/3] bg-gray-100 overflow-hidden">
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
-                      <div className="px-4 py-2 rounded-full bg-white/20 backdrop-blur-md text-xs font-bold flex items-center gap-1.5">
-                        <Eye className="w-3.5 h-3.5" />
-                        <span>View Artifact</span>
+            {/* Action Buttons */}
+            {currentCategory.id !== 'illustration' && (
+              <button
+                onClick={() => handleOpenBoard()}
+                className="inline-flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-5 py-1.5 sm:py-2.5 rounded-full bg-brand-dark hover:bg-black text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-lg transition-all hover:scale-105 active:scale-95 self-start sm:self-auto cursor-pointer"
+              >
+                <Maximize2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-pink-400" />
+                <span>Zoom & Inspect</span>
+              </button>
+            )}
+          </div>
+
+          {/* SPECIFIC VIEW FOR CATEGORY 01: ILLUSTRATION (Storybook 01 & Storybook 02) */}
+          {currentCategory.id === 'illustration' && currentCategory.storybooks ? (
+            <div className="space-y-4 sm:space-y-8">
+              {/* Storybook Switcher Pills */}
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3 px-1 sm:px-0">
+                {currentCategory.storybooks.map((sb, idx) => (
+                  <button
+                    key={sb.id}
+                    onClick={() => setActiveStorybookIndex(idx)}
+                    className={`inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-1.5 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                      activeStorybookIndex === idx
+                        ? 'bg-[#E6004C] text-white shadow-lg scale-105'
+                        : 'bg-stone-100 text-stone-700 hover:bg-stone-200'
+                    }`}
+                  >
+                    <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                    <span>{sb.title}</span>
+                  </button>
+                ))}
+              </div>
+
+              {/* Active Storybook High-Resolution Master Board */}
+              {(() => {
+                const activeSb = currentCategory.storybooks[activeStorybookIndex] || currentCategory.storybooks[0];
+                return (
+                  <div className="space-y-3 sm:space-y-4">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-2 px-1 sm:px-0">
+                      <div>
+                        <h4 className="text-sm sm:text-lg font-extrabold text-neutral-900">{activeSb.title}</h4>
+                        <p className="text-[11px] sm:text-sm text-neutral-500">{activeSb.subtitle}</p>
+                      </div>
+                      <button
+                        onClick={() => handleOpenBoard(activeSb.title, activeSb.subtitle, activeSb.image)}
+                        className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-4 sm:py-2 rounded-full bg-brand-dark hover:bg-black text-white text-xs font-bold shadow transition-all hover:scale-105 cursor-pointer self-start sm:self-auto"
+                      >
+                        <Maximize2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-pink-400" />
+                        <span>Zoom & Inspect</span>
+                      </button>
+                    </div>
+
+                    <div
+                      onClick={() => handleOpenBoard(activeSb.title, activeSb.subtitle, activeSb.image)}
+                      className="relative w-full rounded-lg sm:rounded-2xl overflow-hidden bg-neutral-100 border border-neutral-200/80 shadow-md group cursor-zoom-in transition-all duration-300 hover:border-brand-pink/50 hover:shadow-2xl"
+                    >
+                      <img
+                        src={activeSb.image}
+                        alt={activeSb.title}
+                        className="w-full h-auto object-contain block select-none"
+                        loading="eager"
+                      />
+
+                      <div className="absolute top-2.5 right-2.5 sm:top-4 sm:right-4 z-10 opacity-90 group-hover:opacity-100 transition-opacity">
+                        <div className="px-2.5 sm:px-4 py-1 sm:py-2 rounded-full bg-black/75 backdrop-blur-md text-white text-[9.5px] sm:text-xs font-bold flex items-center gap-1.5 sm:gap-2 shadow-lg border border-white/20">
+                          <ZoomIn className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-pink-400" />
+                          <span>Tap to zoom</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div className="p-4 flex-1 flex flex-col justify-between">
-                    <h4 className="font-bold text-gray-900 text-sm sm:text-base group-hover:text-brand-pink transition-colors">
-                      {item.title}
-                    </h4>
-                    <p className="text-xs text-gray-500 mt-1">
-                      {item.subtitle}
-                    </p>
+                    {/* Also display the other storybook below for immediate complete discovery */}
+                    <div className="pt-4 sm:pt-8 border-t border-stone-200">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-2 mb-2 sm:mb-4 px-1 sm:px-0">
+                        <div>
+                          <h4 className="text-sm sm:text-lg font-extrabold text-neutral-900">
+                            {currentCategory.storybooks[1 - activeStorybookIndex]?.title}
+                          </h4>
+                          <p className="text-[11px] sm:text-sm text-neutral-500">
+                            {currentCategory.storybooks[1 - activeStorybookIndex]?.subtitle}
+                          </p>
+                        </div>
+                        <button
+                          onClick={() => {
+                            const other = currentCategory.storybooks[1 - activeStorybookIndex];
+                            handleOpenBoard(other.title, other.subtitle, other.image);
+                          }}
+                          className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-4 sm:py-2 rounded-full bg-brand-dark hover:bg-black text-white text-xs font-bold shadow transition-all hover:scale-105 cursor-pointer self-start sm:self-auto"
+                        >
+                          <Maximize2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-pink-400" />
+                          <span>Zoom & Inspect</span>
+                        </button>
+                      </div>
+
+                      <div
+                        onClick={() => {
+                          const other = currentCategory.storybooks[1 - activeStorybookIndex];
+                          handleOpenBoard(other.title, other.subtitle, other.image);
+                        }}
+                        className="relative w-full rounded-lg sm:rounded-2xl overflow-hidden bg-neutral-100 border border-neutral-200/80 shadow-md group cursor-zoom-in transition-all duration-300 hover:border-brand-pink/50 hover:shadow-2xl"
+                      >
+                        <img
+                          src={currentCategory.storybooks[1 - activeStorybookIndex]?.image}
+                          alt={currentCategory.storybooks[1 - activeStorybookIndex]?.title}
+                          className="w-full h-auto object-contain block select-none"
+                          loading="lazy"
+                        />
+
+                        <div className="absolute top-2.5 right-2.5 sm:top-4 sm:right-4 z-10 opacity-90 group-hover:opacity-100 transition-opacity">
+                          <div className="px-2.5 sm:px-4 py-1 sm:py-2 rounded-full bg-black/75 backdrop-blur-md text-white text-[9.5px] sm:text-xs font-bold flex items-center gap-1.5 sm:gap-2 shadow-lg border border-white/20">
+                            <ZoomIn className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-pink-400" />
+                            <span>Tap to zoom</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
                   </div>
-                </motion.div>
-              ))}
+                );
+              })()}
             </div>
+          ) : (
+            /* ALL OTHER CATEGORIES (02 - 07): FULL RESOLUTION MASTER BOARD */
+            <div className="space-y-3 sm:space-y-5">
+              <div 
+                onClick={() => handleOpenBoard()}
+                className="relative w-full rounded-lg sm:rounded-2xl overflow-hidden bg-neutral-100 border border-neutral-200/80 shadow-md group cursor-zoom-in transition-all duration-300 hover:border-brand-pink/50 hover:shadow-2xl"
+              >
+                <img
+                  src={currentCategory.boardImage}
+                  alt={`${currentCategory.title} Presentation Board`}
+                  className="w-full h-auto object-contain block select-none"
+                  loading="eager"
+                />
 
-          </motion.div>
-        </AnimatePresence>
+                {/* Hover/Tap Floating Guide Pill */}
+                <div className="absolute top-2.5 right-2.5 sm:top-4 sm:right-4 z-10 opacity-90 group-hover:opacity-100 transition-opacity">
+                  <div className="px-2.5 sm:px-4 py-1 sm:py-2 rounded-full bg-black/75 backdrop-blur-md text-white text-[9.5px] sm:text-xs font-bold flex items-center gap-1.5 sm:gap-2 shadow-lg border border-white/20">
+                    <ZoomIn className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-pink-400" />
+                    <span>Tap / Click to inspect</span>
+                  </div>
+                </div>
 
-      </div>
-    </section>
+                {/* Bottom Subtle Overlay */}
+                <div className="absolute inset-x-0 bottom-0 py-3 sm:py-6 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                  <div className="px-3.5 sm:px-6 py-1 sm:py-2 rounded-full bg-white/90 backdrop-blur-md text-neutral-900 text-xs sm:text-sm font-bold flex items-center gap-2 shadow-xl">
+                    <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-pink" />
+                    <span>Detailed Inspection</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Interactive Clickable Video & Asset Links (Matching Figma Orange Bar Aesthetic) */}
+              {currentCategory.externalLinks && currentCategory.externalLinks.length > 0 && (
+                <div className="space-y-2.5 sm:space-y-3 pt-1">
+                  {currentCategory.externalLinks.map((link, idx) => (
+                    <a
+                      key={idx}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3 px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[#E64A19] to-[#F4511E] text-white shadow-lg hover:shadow-2xl hover:scale-[1.01] active:scale-[0.99] transition-all group cursor-pointer border border-orange-500/40"
+                    >
+                      <div className="flex items-center gap-2.5 sm:gap-3.5 min-w-0">
+                        <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center flex-shrink-0 group-hover:bg-white group-hover:text-[#E64A19] text-white transition-colors">
+                          <Play className="w-3 h-3 sm:w-4 sm:h-4 fill-current ml-0.5" />
+                        </div>
+                        <div className="flex flex-wrap sm:flex-nowrap items-center gap-1 sm:gap-2 min-w-0">
+                          <span className="font-extrabold text-xs sm:text-base tracking-tight whitespace-nowrap">
+                            {link.title}
+                          </span>
+                          <span className="opacity-75 text-xs sm:text-sm hidden sm:inline">-</span>
+                          <span className="text-[10px] sm:text-sm font-medium opacity-90 underline underline-offset-2 truncate max-w-[200px] sm:max-w-md lg:max-w-2xl">
+                            {link.url}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="inline-flex items-center gap-1.5 self-end sm:self-auto px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-white text-[#E64A19] text-[11px] sm:text-xs font-bold shadow-md group-hover:bg-black group-hover:text-white transition-colors flex-shrink-0">
+                        <span>Open Drive Link</span>
+                        <ArrowUpRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+        </motion.div>
+      </AnimatePresence>
+
+    </div>
   );
 }

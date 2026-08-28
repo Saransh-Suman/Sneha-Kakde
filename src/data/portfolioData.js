@@ -131,44 +131,72 @@ export const craftGallery = [
   },
   {
     id: 5,
-    title: "Traditional Cylinder Painting",
-    subtitle: "Folk motifs and intricate line art patterns",
-    image: "/assets/craft_cylinder.png",
-    aspect: "portrait"
-  },
-  {
-    id: 6,
-    title: "Published Marathi Poetry",
-    subtitle: "Thoughts & literary reflections printed in publication",
-    image: "/assets/craft_poem.png",
-    aspect: "portrait"
-  },
-  {
-    id: 7,
-    title: "Hands-on Sculptural Process",
-    subtitle: "Carving, refining and messy studio work",
+    title: "Doodle Art on Cylinder",
+    subtitle: "Intricate character line art and hand-painted motifs",
     image: "/assets/craft_clay_hands.png",
     aspect: "portrait"
   },
   {
+    id: 6,
+    title: "Published Marathi Articles & Reflections",
+    subtitle: "Reflections on culture, life & society in print",
+    image: "/assets/craft_cylinder.png",
+    aspect: "portrait"
+  },
+  {
+    id: 7,
+    title: "Published Marathi Poetry",
+    subtitle: "Poem 'मनाच गावं' published in youth magazine",
+    image: "/assets/craft_poem.png",
+    aspect: "portrait"
+  },
+  {
     id: 8,
-    title: "Handcrafted Wood Design",
-    subtitle: "Exploring natural textures and wood finishing",
-    image: "/assets/craft_wood.png",
+    title: "Devanagari Calligraphy Art",
+    subtitle: "Expressive ink strokes and poetry lettering",
+    image: "/assets/craft_sketch_book.png",
     aspect: "portrait"
   },
   {
     id: 9,
-    title: "Visual Diary & Daily Sketchbook",
-    subtitle: "Capturing fleeting everyday observations",
-    image: "/assets/craft_sketch_book.png",
+    title: "Handwritten Poetry Diary",
+    subtitle: "Personal reflections and Marathi verse writings",
+    image: "/assets/craft_sculpture.png",
     aspect: "portrait"
   },
   {
     id: 10,
     title: "Rangoli & Cultural Artistry",
-    subtitle: "Symmetrical floor art and color harmony",
+    subtitle: "Cow and calf floor art with colored sand",
+    image: "/assets/craft_painting.png",
+    aspect: "portrait"
+  },
+  {
+    id: 11,
+    title: "Reading & Daily Reflections",
+    subtitle: "Exploring perspectives, habits and human behavior",
+    image: "/assets/craft_wood.png",
+    aspect: "portrait"
+  },
+  {
+    id: 12,
+    title: "Photography & Fleeting Moments",
+    subtitle: "Observing details, people, and visual stories",
     image: "/assets/craft_rangoli.png",
+    aspect: "portrait"
+  },
+  {
+    id: 13,
+    title: "Public Speaking & Keynote",
+    subtitle: "Addressing community gatherings and cultural events",
+    image: "/assets/craft_speech.png",
+    aspect: "portrait"
+  },
+  {
+    id: 14,
+    title: "State Recognition & Honors",
+    subtitle: "Felicitation for leadership on International Women's Day",
+    image: "/assets/craft_award.png",
     aspect: "portrait"
   }
 ];
@@ -412,76 +440,101 @@ export const archiveCategories = [
     number: "01",
     id: "illustration",
     title: "Illustration",
-    description: "Digital storytelling, character illustrations, ink sketches, and conceptual artwork.",
-    items: [
-      { title: "Mascot Character Exploration", image: "/assets/mascot.png", subtitle: "Stylized character design & expressions" },
-      { title: "Tree of Solitude Digital Painting", image: "/assets/craft_digital.png", subtitle: "Lighting and atmospheric moodboard" },
-      { title: "Dynamic Sketchbook Studies", image: "/assets/craft_sketch.png", subtitle: "Gesture and posture anatomy" }
-    ]
+    description: "Digital storytelling, children's storybooks, character illustrations, ink sketches, and conceptual artwork.",
+    storybooks: [
+      {
+        id: "storybook-01",
+        title: "Storybook 01 — The Skip",
+        subtitle: "Written & Illustrated by Sneha K. (Diary of a Curious Squirrel)",
+        image: "/assets/archive_storybook_1.png"
+      },
+      {
+        id: "storybook-02",
+        title: "Storybook 02 — What my mum thinks of Me?",
+        subtitle: "Written & Illustrated by Sneha K. (Frogs, Dreams & Monsoon Rituals)",
+        image: "/assets/archive_storybook_2.png"
+      }
+    ],
+    boardImage: "/assets/archive_storybook_1.png",
+    aspect: "vertical",
+    tag: "Category 01"
   },
   {
     number: "02",
     id: "graphic-design",
     title: "Graphic Design",
-    description: "Brand identity systems, typography posters, marketing collateral, and publication layouts.",
-    items: [
-      { title: "Adyam Brand Identity System", image: "/assets/adyam_cover.png", subtitle: "21-page comprehensive brand book" },
-      { title: "Geometric Brand Guidelines", image: "/assets/7c5d375d7032457271dd1ac66438474a86d9d7b7.png", subtitle: "Construction grid and clear space" },
-      { title: "Adyam Packaging Collection", image: "/assets/5159cdd47d8f571608a34ceb5f7bab9151c7f5b6.png", subtitle: "Luxury box & bottle design" },
-      { title: "Palette & Harmony Guide", image: "/assets/93909f8c978c07fc422b5d1af1a7f078ec433e41.png", subtitle: "Contrast and accessible pairing" }
-    ]
+    description: "Logo Design, Packaging Design, Carousel Ads, Milk Campaign, ShriTej Branding, and Asian Paints campaign.",
+    boardImage: "/assets/archive_graphic_design.png",
+    aspect: "vertical",
+    tag: "Category 02"
   },
   {
     number: "03",
     id: "character-design",
     title: "Character Design & Concept",
-    description: "Expressive personalities, dynamic costume designs, facial sheets, and narrative characters.",
-    items: [
-      { title: "Sneha Portfolio Mascot", image: "/assets/mascot.png", subtitle: "Waving avatar with sticker effect" },
-      { title: "Gesture & Expression Sheet", image: "/assets/craft_sketch_book.png", subtitle: "Hand-drawn ink explorations" }
-    ]
+    description: "Expressive personalities, snake goddess, water spirits, armored warriors, and stylized character sheets.",
+    boardImage: "/assets/archive_character_design.png",
+    aspect: "vertical",
+    tag: "Category 03"
   },
   {
     number: "04",
     id: "product-design",
     title: "Product Design",
-    description: "Physical ergonomics, tangible interfaces, interaction models, and IoT device architecture.",
-    items: [
-      { title: "ChemThread Interactive Platform", image: "/assets/chemthread_laptop.png", subtitle: "Web app for chemical model exploration" },
-      { title: "AkshiO Learning Station", image: "/assets/storybook.png", subtitle: "Physical-digital interactive storybook" }
-    ]
+    description: "Urban Monkey Lotus Embrace sneaker design, sustainable algae material research, 3D modeling, and packaging.",
+    boardImage: "/assets/archive_product_design.png",
+    externalLinks: [
+      {
+        title: "Video Link",
+        url: "https://drive.google.com/file/d/19-GQGP5wtrwfu2uiSyzHTfD_XyWcLANA/view?usp=drive_link",
+        type: "video"
+      }
+    ],
+    aspect: "vertical",
+    tag: "Category 04"
   },
   {
     number: "05",
     id: "photography",
     title: "Photography",
-    description: "Macro details, shadows, human portraits, vibrant street life, and natural textures.",
-    items: [
-      { title: "Capturing Fleeting Moments", image: "/assets/photo_gallery_1.png", subtitle: "Natural lighting and authentic street scenes" },
-      { title: "Architectural & Natural Lines", image: "/assets/craft_wood.png", subtitle: "Organic wood patterns & lighting" }
-    ]
+    description: "Macro details, rural life, motion studies, geometric textures, and cultural portraiture.",
+    boardImage: "/assets/archive_photography.png",
+    aspect: "vertical",
+    tag: "Category 05"
   },
   {
     number: "06",
     id: "3d-animation",
     title: "3D Character & Animation",
-    description: "3D character modeling, expressive rigs, material shaders, and playful motion tests.",
-    items: [
-      { title: "3D Character Rig & Expressions", image: "/assets/misc_1.png", subtitle: "Stylized cartoon mesh and render" },
-      { title: "Spatial Environmental Asset", image: "/assets/misc_2.png", subtitle: "3D modeling and lighting composition" }
-    ]
+    description: "3D character sculpting, mechs, rigs, mythical creatures, and digital motion assets.",
+    boardImage: "/assets/archive_3d_animation.png",
+    externalLinks: [
+      {
+        title: "Character Showreel",
+        url: "https://drive.google.com/file/d/1BGVdf1SozEfkc55q8agwXiHijszXhvw0/view?usp=drive_link",
+        type: "video"
+      },
+      {
+        title: "Mobile Ad",
+        url: "https://drive.google.com/file/d/193TEnsegQckgQRanMDV1jzWq5uF54TN-/view?usp=drive_link",
+        type: "video"
+      },
+      {
+        title: "Asset",
+        url: "https://drive.google.com/file/d/19P6XD23ELYkPuuuL9XbK6sTL-xxxMulS/view?usp=drive_link",
+        type: "3d"
+      }
+    ],
+    aspect: "vertical",
+    tag: "Category 06"
   },
   {
     number: "07",
     id: "miscellaneous",
     title: "Miscellaneous & Crafts",
-    description: "Clay sculptures, terracotta carving, Marathi poetry, rangoli, and experimental mediums.",
-    items: [
-      { title: "Ganesha & POP Clay Sculpting", image: "/assets/craft_clay.png", subtitle: "Hand-sculpted clay modeling" },
-      { title: "Terracotta Studio Work", image: "/assets/craft_clay_hands.png", subtitle: "Carving, shaping and texturing" },
-      { title: "Marathi Literary Poetry", image: "/assets/craft_poem.png", subtitle: "Published Marathi verses & thoughts" },
-      { title: "Cylinder Folk Art Painting", image: "/assets/craft_cylinder.png", subtitle: "Hand-painted folk motifs" },
-      { title: "Acrylic Fluid Artistry", image: "/assets/craft_art.png", subtitle: "Canvas painting & color interplay" }
-    ]
+    description: "Clay sculptures, terracotta pottery, Sanskrit calligraphy mandalas, Marathi poetry, and fluid art.",
+    boardImage: "/assets/archive_miscellaneous.png",
+    aspect: "vertical",
+    tag: "Category 07"
   }
 ];
