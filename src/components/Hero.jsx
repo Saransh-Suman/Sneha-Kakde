@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { personalInfo } from '../data/portfolioData';
 import { ArrowUpRight, ArrowDown, Sparkles } from 'lucide-react';
 import ImageWithSkeleton from './ImageWithSkeleton';
+import mascotImg from '../assets/mascot.png';
 
 const TYPEWRITER_PHRASES = [
   'Sneha Kakde',
@@ -72,12 +73,12 @@ export default function Hero({ onOpenContact }) {
               className="relative z-10 w-full flex justify-center items-center"
             >
               <ImageWithSkeleton
-                src="/assets/mascot.png"
+                src={mascotImg}
                 alt="Sneha Kakde Character Mascot"
                 loading="eager"
                 draggable={false}
-                containerClassName="w-full flex justify-center items-center rounded-3xl"
-                className="w-full h-auto max-h-[340px] sm:max-h-[580px] lg:max-h-[720px] xl:max-h-[780px] object-contain sticker-effect filter drop-shadow-2xl select-none"
+                containerClassName="w-full flex justify-center items-center overflow-visible"
+                className="w-full h-auto max-h-[340px] sm:max-h-[580px] lg:max-h-[720px] xl:max-h-[780px] object-contain mascot-shadow select-none"
               />
             </motion.div>
 

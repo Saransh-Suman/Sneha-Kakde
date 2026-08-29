@@ -33,8 +33,10 @@ export default function ImageWithSkeleton({
     setIsLoaded(true);
   };
 
+  const hasExplicitOverflow = containerClassName.includes('overflow-');
+
   return (
-    <div className={`relative overflow-hidden ${containerClassName}`} onClick={onClick}>
+    <div className={`relative ${hasExplicitOverflow ? '' : 'overflow-hidden'} ${containerClassName}`} onClick={onClick}>
       {/* Animated Skeleton Shimmer Placeholder */}
       {!isLoaded && !hasError && (
         <div
