@@ -163,7 +163,7 @@
 .animate-marquee-crafts {
   display: flex;
   width: max-content;
-  animation: marquee-scroll 32s linear infinite;
+  animation: marquee-scroll 120s linear infinite;
   will-change: transform;
 }
 
