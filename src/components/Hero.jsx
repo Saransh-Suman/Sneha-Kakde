@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { personalInfo } from '../data/portfolioData';
 import { ArrowUpRight, ArrowDown, Sparkles } from 'lucide-react';
 import ImageWithSkeleton from './ImageWithSkeleton';
-import mascotImg from '../assets/mascot.png';
+import mascotImg from '../assets/mascot.webp';
 
 const TYPEWRITER_PHRASES = [
   'Sneha Kakde',

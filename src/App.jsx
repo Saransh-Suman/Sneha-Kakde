@@ -75,9 +75,7 @@ export default function App() {
               onOpenContact={() => setIsContactOpen(true)} 
             />
             
-            <Projects 
-              onSelectProject={(project) => setSelectedProject(project)} 
-            />
+            <Projects />
 
             <About 
               onSelectCraft={(craft) => setSelectedCraft(craft)} 

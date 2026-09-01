@@ -61,6 +61,7 @@ export default function ImageWithSkeleton({
           src={src}
           alt={alt}
           loading={loading}
+          decoding="async"
           draggable={draggable}
           style={style}
           onLoad={handleImageLoad}

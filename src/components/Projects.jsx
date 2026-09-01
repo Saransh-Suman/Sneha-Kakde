@@ -1,16 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { featuredProjects } from '../data/portfolioData';
-import { ArrowRight, ArrowUpRight, Layers, Eye } from 'lucide-react';
+import { featuredProjects, personalInfo } from '../data/portfolioData';
+import { ArrowUpRight, Layers } from 'lucide-react';
 import ImageWithSkeleton from './ImageWithSkeleton';
 
-export default function Projects({ onSelectProject }) {
-  const [filter, setFilter] = useState('all');
-
-  const filteredProjects = filter === 'all' 
-    ? featuredProjects 
-    : featuredProjects.filter(p => p.category.toLowerCase().includes(filter));
-
+export default function Projects() {
   return (
     <section id="work" className="py-16 sm:py-24 px-4 sm:px-8 bg-[#FBFBFC] relative scroll-mt-20">
       <div className="max-w-7xl mx-auto">
@@ -34,14 +28,16 @@ export default function Projects({ onSelectProject }) {
         {/* Projects Grid (Matching Figma 2x2 Layout) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10">
           {featuredProjects.map((project, index) => (
-            <motion.div
+            <motion.a
               key={project.id}
+              href={project.behanceLink || personalInfo.links.behance}
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              onClick={() => onSelectProject(project)}
-              className="group cursor-pointer flex flex-col"
+              className="group cursor-pointer flex flex-col no-underline text-inherit"
             >
               {/* Card Thumbnail Container */}
               <div className="relative w-full aspect-[16/10] bg-[#E2E4E8] rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm group-hover:shadow-2xl group-hover:-translate-y-1.5 transition-all duration-400 ease-out border border-gray-200/70">
@@ -75,32 +71,8 @@ export default function Projects({ onSelectProject }) {
                   <div className="flex-1 min-w-0">
                     <h3 className="text-base sm:text-xl lg:text-2xl font-bold text-white tracking-tight flex items-center gap-2 group-hover:text-pink-300 transition-colors">
                       <span className="truncate">{project.title}</span>
-                      <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-2 transition-transform duration-300 text-brand-pink flex-shrink-0" />
+                      <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300 text-brand-pink flex-shrink-0" />
                     </h3>
-                  </div>
-
-                  {/* Actions: Direct Behance Link + View Details */}
-                  <div className="flex items-center gap-2 flex-shrink-0">
-                    {project.behanceLink && (
-                      <a
-                        href={project.behanceLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="px-2.5 sm:px-3 py-1.5 rounded-full bg-black/60 hover:bg-[#0057ff] text-white/95 hover:text-white backdrop-blur-md flex items-center gap-1 text-[11px] sm:text-xs font-bold transition-all border border-white/20 shadow-md group/bhn"
-                        title="Open on Behance"
-                      >
-                        <span>Behance</span>
-                        <ArrowUpRight className="w-3.5 h-3.5 group-hover/bhn:translate-x-0.5 group-hover/bhn:-translate-y-0.5 transition-transform" />
-                      </a>
-                    )}
-
-                    <div 
-                      className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white group-hover:bg-brand-pink group-hover:text-white transition-all flex-shrink-0"
-                      title="Read Case Study"
-                    >
-                      <Eye className="w-4 h-4 sm:w-5 sm:h-5" />
-                    </div>
                   </div>
                 </div>
 
@@ -119,34 +91,19 @@ export default function Projects({ onSelectProject }) {
                   </p>
                 </div>
 
-                <div className="flex flex-wrap items-center justify-between gap-2 mt-3 pt-2.5 border-t border-gray-100">
-                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                    {project.tags.map((tag) => (
-                      <span 
-                        key={tag}
-                        className="text-[10px] sm:text-[11px] font-semibold px-2 sm:px-2.5 py-0.5 rounded-md bg-gray-100 text-gray-600 border border-gray-200/50"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  {project.behanceLink && (
-                    <a
-                      href={project.behanceLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold text-[#0057ff] hover:text-blue-700 hover:underline transition-colors ml-auto"
+                <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-3 pt-2.5 border-t border-gray-100">
+                  {project.tags.map((tag) => (
+                    <span 
+                      key={tag}
+                      className="text-[10px] sm:text-[11px] font-semibold px-2 sm:px-2.5 py-0.5 rounded-md bg-gray-100 text-gray-600 border border-gray-200/50"
                     >
-                      <span>View on Behance</span>
-                      <ArrowUpRight className="w-3 h-3" />
-                    </a>
-                  )}
+                      {tag}
+                    </span>
+                  ))}
                 </div>
               </div>
 
-            </motion.div>
+            </motion.a>
           ))}
         </div>
 

@@ -105,7 +105,7 @@ export const craftGallery = [
     id: 1,
     title: "Devanagari Calligraphy Art",
     subtitle: "Expressive ink strokes and poetry lettering",
-    image: "/assets/craft_sketch_book.png",
+    image: "/assets/craft_sketch_book.webp",
     aspect: "portrait"
   },
   {
@@ -119,35 +119,35 @@ export const craftGallery = [
     id: 3,
     title: "Rangoli & Cultural Artistry",
     subtitle: "Cow and calf floor art with colored sand",
-    image: "/assets/craft_painting.png",
+    image: "/assets/craft_painting.webp",
     aspect: "portrait"
   },
   {
     id: 4,
     title: "Reading & Daily Reflections",
     subtitle: "Exploring perspectives, habits and human behavior",
-    image: "/assets/craft_wood.png",
+    image: "/assets/craft_wood.webp",
     aspect: "portrait"
   },
   {
     id: 5,
     title: "Photography & Fleeting Moments",
     subtitle: "Observing details, people, and visual stories",
-    image: "/assets/craft_rangoli.png",
+    image: "/assets/craft_rangoli.webp",
     aspect: "portrait"
   },
   {
     id: 6,
     title: "Event Anchoring & Stage Hosting",
     subtitle: "Hosting formal ceremonies and cultural stage programs",
-    image: "/assets/craft_anchoring.png",
+    image: "/assets/craft_anchoring.webp",
     aspect: "portrait"
   },
   {
     id: 7,
     title: "Clay Figurine Sculpting",
     subtitle: "Tactile modeling with POP & terracotta clay",
-    image: "/assets/craft_clay.png",
+    image: "/assets/craft_clay.webp",
     aspect: "portrait"
   },
   {
@@ -175,189 +175,189 @@ export const craftGallery = [
     id: 11,
     title: "Doodle Art on Cylinder",
     subtitle: "Intricate character line art and hand-painted motifs",
-    image: "/assets/craft_clay_hands.png",
+    image: "/assets/craft_clay_hands.webp",
     aspect: "portrait"
   },
   {
     id: 12,
     title: "Published Marathi Articles & Reflections",
     subtitle: "Reflections on culture, life & society in print",
-    image: "/assets/craft_cylinder.png",
+    image: "/assets/craft_cylinder.webp",
     aspect: "portrait"
   },
   {
     id: 13,
     title: "Published Marathi Poetry",
     subtitle: "Poem 'मनाच गावं' published in youth magazine",
-    image: "/assets/craft_poem.png",
+    image: "/assets/craft_poem.webp",
     aspect: "portrait"
   },
   {
     id: 14,
     title: "Public Speaking & Keynote",
     subtitle: "Addressing community gatherings and cultural events",
-    image: "/assets/craft_speech.png",
+    image: "/assets/craft_speech.webp",
     aspect: "portrait"
   },
   {
     id: 15,
     title: "State Recognition & Honors",
     subtitle: "Felicitation for leadership on International Women's Day",
-    image: "/assets/craft_award.png",
+    image: "/assets/craft_award.webp",
     aspect: "portrait"
   },
   {
     id: 16,
     title: "Ceramic Pottery & Clay Forms",
     subtitle: "Hand-thrown clay vessels and tactile craft exploration",
-    image: "/assets/craft_frame130_01_7577f9bd.png",
+    image: "/assets/craft_frame130_01_7577f9bd.webp",
     aspect: "landscape"
   },
   {
     id: 17,
     title: "Architectural Heritage & Cultural Walk",
     subtitle: "Observing traditional textures, stone carving and monuments",
-    image: "/assets/craft_frame130_02_a69f0523.png",
+    image: "/assets/craft_frame130_02_a69f0523.webp",
     aspect: "landscape"
   },
   {
     id: 18,
     title: "Traditional Textile Weaving & Draping",
     subtitle: "Exploring regional textile crafts, drape and looms",
-    image: "/assets/craft_frame130_03_ee5e83bc.png",
+    image: "/assets/craft_frame130_03_ee5e83bc.webp",
     aspect: "landscape"
   },
   {
     id: 19,
     title: "Terracotta Sculpture Details",
     subtitle: "Intricate clay modeling and tactile surface detailing",
-    image: "/assets/craft_frame130_04_09bbc0c8.png",
+    image: "/assets/craft_frame130_04_09bbc0c8.webp",
     aspect: "portrait"
   },
   {
     id: 20,
     title: "Studio Craft & Material Study",
     subtitle: "Hands-on prototyping with natural materials and dyes",
-    image: "/assets/craft_frame130_05_6d9e39dd.png",
+    image: "/assets/craft_frame130_05_6d9e39dd.webp",
     aspect: "portrait"
   },
   {
     id: 21,
     title: "Handmade Ceramic Figurines",
     subtitle: "Whimsical terracotta characters and animal miniatures",
-    image: "/assets/craft_frame130_06_40714337.png",
+    image: "/assets/craft_frame130_06_40714337.webp",
     aspect: "portrait"
   },
   {
     id: 22,
     title: "Hand-carved Wooden Craft Artifacts",
     subtitle: "Wood carving textures and traditional geometric motifs",
-    image: "/assets/craft_frame130_07_cf784d39.png",
+    image: "/assets/craft_frame130_07_cf784d39.webp",
     aspect: "portrait"
   },
   {
     id: 23,
     title: "Cultural Folk Art & Pattern Study",
     subtitle: "Indigenous ornamentation, folk rhythm and motifs",
-    image: "/assets/craft_frame130_08_7f019dae.png",
+    image: "/assets/craft_frame130_08_7f019dae.webp",
     aspect: "landscape"
   },
   {
     id: 24,
     title: "Handmade Paper & Ink Studies",
     subtitle: "Organic fiber paper crafting and calligraphy marks",
-    image: "/assets/craft_frame130_09_64ff3721.png",
+    image: "/assets/craft_frame130_09_64ff3721.webp",
     aspect: "portrait"
   },
   {
     id: 25,
     title: "Fine Arts Exhibition Showcase",
     subtitle: "Display of curated paintings, mixed media and sculptures",
-    image: "/assets/craft_frame130_10_859ddc94.png",
+    image: "/assets/craft_frame130_10_859ddc94.webp",
     aspect: "landscape"
   },
   {
     id: 26,
     title: "Hand-painted Floral Patterns",
     subtitle: "Botanical motifs and decorative gouache strokes",
-    image: "/assets/craft_frame130_11_420bdb12.png",
+    image: "/assets/craft_frame130_11_420bdb12.webp",
     aspect: "portrait"
   },
   {
     id: 27,
     title: "Experimental Printmaking & Linocut",
     subtitle: "Block prints, negative space and rhythmic ink textures",
-    image: "/assets/craft_frame130_12_42890e47.png",
+    image: "/assets/craft_frame130_12_42890e47.webp",
     aspect: "portrait"
   },
   {
     id: 28,
     title: "Artisan Workshop & Craft Mentorship",
     subtitle: "Learning traditional techniques from master craftspeople",
-    image: "/assets/craft_frame130_13_b100709f.png",
+    image: "/assets/craft_frame130_13_b100709f.webp",
     aspect: "portrait"
   },
   {
     id: 29,
     title: "Vintage Bookbinding & Leather Craft",
     subtitle: "Hand-stitched leather journals, folios and diaries",
-    image: "/assets/craft_frame130_14_603d0cee.png",
+    image: "/assets/craft_frame130_14_603d0cee.webp",
     aspect: "portrait"
   },
   {
     id: 30,
     title: "Natural Pigment & Color Extraction",
     subtitle: "Exploring earth ochres, botanical stains and pigments",
-    image: "/assets/craft_frame130_15_6ae309e0.png",
+    image: "/assets/craft_frame130_15_6ae309e0.webp",
     aspect: "portrait"
   },
   {
     id: 31,
     title: "Public Art Installation & Murals",
     subtitle: "Large-scale community wall painting and visual storytelling",
-    image: "/assets/craft_frame130_16_50a9129d.png",
+    image: "/assets/craft_frame130_16_50a9129d.webp",
     aspect: "landscape"
   },
   {
     id: 32,
     title: "Handmade Jewelry & Terracotta Beads",
     subtitle: "Wearable micro-sculptures and fired clay beads",
-    image: "/assets/craft_frame130_18_d55a4701.png",
+    image: "/assets/craft_frame130_18_d55a4701.webp",
     aspect: "portrait"
   },
   {
     id: 33,
     title: "Community Art Circle & Sketchwalk",
     subtitle: "Live plein-air sketching and creative storytelling",
-    image: "/assets/craft_frame130_19_55f6b731.png",
+    image: "/assets/craft_frame130_19_55f6b731.webp",
     aspect: "portrait"
   },
   {
     id: 34,
     title: "Monsoon Life & Street Vignettes",
     subtitle: "Documentary photo series capturing everyday moments",
-    image: "/assets/craft_frame130_20_4d95d07d.png",
+    image: "/assets/craft_frame130_20_4d95d07d.webp",
     aspect: "landscape"
   },
   {
     id: 35,
     title: "Stage Production & Set Visuals",
     subtitle: "Atmospheric lighting, stage compositions and scenography",
-    image: "/assets/craft_frame130_21_c9fdeec7.png",
+    image: "/assets/craft_frame130_21_c9fdeec7.webp",
     aspect: "landscape"
   },
   {
     id: 36,
     title: "Traditional Brass Metalware Craft",
     subtitle: "Etched metalware, bell metal craft and patina studies",
-    image: "/assets/craft_frame130_22_5783f979.png",
+    image: "/assets/craft_frame130_22_5783f979.webp",
     aspect: "portrait"
   },
   {
     id: 37,
     title: "Creative Workshop & Student Dialogue",
     subtitle: "Facilitating interactive visual design and craft discussions",
-    image: "/assets/craft_frame130_23_3be4cad5.png",
+    image: "/assets/craft_frame130_23_3be4cad5.webp",
     aspect: "landscape"
   }
 ];
@@ -371,7 +371,7 @@ export const featuredProjects = [
     duration: "1 month",
     summary: "Connected fragmented Class 6-10 chemistry content through information architecture, concept mapping, and progressive learning pathways.",
     behanceLink: "https://www.behance.net/gallery/255106251/ChemThread-Cross-Grade-Chemistry-Learning-Dashboard",
-    coverImage: "/assets/chemthread_mockup.png",
+    coverImage: "/assets/chemthread_mockup.webp",
     accentColor: "#059669",
     tags: ["UI/UX Design", "Information Architecture", "Concept Mapping", "Learning Pathways"],
     metrics: [
@@ -411,8 +411,8 @@ export const featuredProjects = [
         }
       ],
       gallery: [
-        { url: "/assets/chemthread_mockup.png", caption: "ChemThread Interactive Platform Interface" },
-        { url: "/assets/chemthread_laptop.png", caption: "Visual Scaffolding Workspace on Laptop" }
+        { url: "/assets/chemthread_mockup.webp", caption: "ChemThread Interactive Platform Interface" },
+        { url: "/assets/chemthread_laptop.webp", caption: "Visual Scaffolding Workspace on Laptop" }
       ]
     }
   },
@@ -424,7 +424,7 @@ export const featuredProjects = [
     duration: "4 months",
     summary: "Designed an offline multi-user learning ecosystem integrating student app, parent mode and teacher dashboard through user research, user flows, information architecture and a five-level LSRW learning journey.",
     behanceLink: "https://www.behance.net/gallery/255105131/AkshiO-Multi-User-English-Learning-Ecosystem?platform=direct",
-    coverImage: "/assets/storybook.png",
+    coverImage: "/assets/storybook.webp",
     accentColor: "#E6004C",
     tags: ["UI/UX Design", "LSRW Journey", "EdTech Ecosystem", "Offline-First"],
     metrics: [
@@ -464,7 +464,7 @@ export const featuredProjects = [
         }
       ],
       gallery: [
-        { url: "/assets/storybook.png", caption: "AkshiO Illustrated Interactive Storybook and Device Ecosystem" }
+        { url: "/assets/storybook.webp", caption: "AkshiO Illustrated Interactive Storybook and Device Ecosystem" }
       ]
     }
   },
@@ -476,7 +476,7 @@ export const featuredProjects = [
     duration: "2 months",
     summary: "Developed an AI-powered financial companion using user-centered design to help first-time earners understand, plan, and build better money habits.",
     behanceLink: "https://www.behance.net/gallery/255106477/FinGuide-AI-AI-Powered-Financial-Companion?platform=direct",
-    coverImage: "/assets/finguide_cover.png",
+    coverImage: "/assets/finguide_cover.webp",
     accentColor: "#0D9488",
     tags: ["UI/UX Design", "AI Companion", "Fintech", "Behavioral UX"],
     metrics: [
@@ -516,7 +516,7 @@ export const featuredProjects = [
         }
       ],
       gallery: [
-        { url: "/assets/finguide_cover.png", caption: "FinGuide AI — Brand Identity & Design System" }
+        { url: "/assets/finguide_cover.webp", caption: "FinGuide AI — Brand Identity & Design System" }
       ]
     }
   },
@@ -528,7 +528,7 @@ export const featuredProjects = [
     duration: "1 month",
     summary: "Built a Maharashtrian-rooted fresh-food brand inspired by “Old is Gold,” combining brand identity, packaging, and mascot design.",
     behanceLink: "https://www.behance.net/gallery/253428839/Adyam-Branding?platform=direct",
-    coverImage: "/assets/adyam_cover.png",
+    coverImage: "/assets/adyam_cover.webp",
     accentColor: "#D97706",
     tags: ["Visual Design", "Brand Identity", "Packaging", "Mascot Design"],
     metrics: [
@@ -568,11 +568,11 @@ export const featuredProjects = [
         }
       ],
       gallery: [
-        { url: "/assets/adyam_cover.png", caption: "Brand Book Cover & Logo Philosophy" },
-        { url: "/assets/7c5d375d7032457271dd1ac66438474a86d9d7b7.png", caption: "Logo Anatomy & Grid Geometry" },
-        { url: "/assets/93909f8c978c07fc422b5d1af1a7f078ec433e41.png", caption: "Color Palette & Contrast Guidelines" },
-        { url: "/assets/ea081aef420c63e9d61cff2a7bf3edecd58e07a9.png", caption: "Typography Hierarchy & Editorial Usage" },
-        { url: "/assets/5159cdd47d8f571608a34ceb5f7bab9151c7f5b6.png", caption: "Packaging Mockups & Application" }
+        { url: "/assets/adyam_cover.webp", caption: "Brand Book Cover & Logo Philosophy" },
+        { url: "/assets/7c5d375d7032457271dd1ac66438474a86d9d7b7.webp", caption: "Logo Anatomy & Grid Geometry" },
+        { url: "/assets/93909f8c978c07fc422b5d1af1a7f078ec433e41.webp", caption: "Color Palette & Contrast Guidelines" },
+        { url: "/assets/ea081aef420c63e9d61cff2a7bf3edecd58e07a9.webp", caption: "Typography Hierarchy & Editorial Usage" },
+        { url: "/assets/5159cdd47d8f571608a34ceb5f7bab9151c7f5b6.webp", caption: "Packaging Mockups & Application" }
       ]
     }
   },
@@ -584,7 +584,7 @@ export const featuredProjects = [
     duration: "1 month",
     summary: "Developed a cohesive visual identity through competitor research, visual analysis, logo development, typography, colour selection, and brand applications across stationery and merchandise.",
     behanceLink: "https://www.behance.net/gallery/255105741/Tritva",
-    coverImage: "/assets/tritva_cover.png",
+    coverImage: "/assets/tritva_cover.webp",
     accentColor: "#E67E22",
     tags: ["Graphic Design", "Brand Identity", "Typography", "Merchandise"],
     metrics: [
@@ -624,7 +624,7 @@ export const featuredProjects = [
         }
       ],
       gallery: [
-        { url: "/assets/tritva_cover.png", caption: "Tritva Visual Identity System, Ideation & Merchandise Mockups" }
+        { url: "/assets/tritva_cover.webp", caption: "Tritva Visual Identity System, Ideation & Merchandise Mockups" }
       ]
     }
   }
@@ -641,16 +641,16 @@ export const archiveCategories = [
         id: "storybook-01",
         title: "Storybook 01 — The Skip",
         subtitle: "Written & Illustrated by Sneha K. (Diary of a Curious Squirrel)",
-        image: "/assets/archive_storybook_1.png"
+        image: "/assets/archive_storybook_1.webp"
       },
       {
         id: "storybook-02",
         title: "Storybook 02 — What my mum thinks of Me?",
         subtitle: "Written & Illustrated by Sneha K. (Frogs, Dreams & Monsoon Rituals)",
-        image: "/assets/archive_storybook_2.png"
+        image: "/assets/archive_storybook_2.webp"
       }
     ],
-    boardImage: "/assets/archive_storybook_1.png",
+    boardImage: "/assets/archive_storybook_1.webp",
     aspect: "vertical",
     tag: "Category 01"
   },
@@ -659,7 +659,7 @@ export const archiveCategories = [
     id: "graphic-design",
     title: "Graphic Design",
     description: "Logo Design, Packaging Design, Carousel Ads, Milk Campaign, ShriTej Branding, and Asian Paints campaign.",
-    boardImage: "/assets/archive_graphic_design.png",
+    boardImage: "/assets/archive_graphic_design.webp",
     aspect: "vertical",
     tag: "Category 02"
   },
@@ -668,7 +668,7 @@ export const archiveCategories = [
     id: "character-design",
     title: "Character Design & Concept",
     description: "Expressive personalities, snake goddess, water spirits, armored warriors, and stylized character sheets.",
-    boardImage: "/assets/archive_character_design.png",
+    boardImage: "/assets/archive_character_design.webp",
     aspect: "vertical",
     tag: "Category 03"
   },
@@ -677,7 +677,7 @@ export const archiveCategories = [
     id: "product-design",
     title: "Product Design",
     description: "Urban Monkey Lotus Embrace sneaker design, sustainable algae material research, 3D modeling, and packaging.",
-    boardImage: "/assets/archive_product_design.png",
+    boardImage: "/assets/archive_product_design.webp",
     externalLinks: [
       {
         title: "Video Link",
@@ -693,7 +693,7 @@ export const archiveCategories = [
     id: "photography",
     title: "Photography",
     description: "Macro details, rural life, motion studies, geometric textures, and cultural portraiture.",
-    boardImage: "/assets/archive_photography.png",
+    boardImage: "/assets/archive_photography.webp",
     aspect: "vertical",
     tag: "Category 05"
   },
@@ -702,7 +702,7 @@ export const archiveCategories = [
     id: "3d-animation",
     title: "3D Character & Animation",
     description: "3D character sculpting, mechs, rigs, mythical creatures, and digital motion assets.",
-    boardImage: "/assets/archive_3d_animation.png",
+    boardImage: "/assets/archive_3d_animation.webp",
     externalLinks: [
       {
         title: "Character Showreel",
@@ -728,7 +728,7 @@ export const archiveCategories = [
     id: "miscellaneous",
     title: "Miscellaneous & Crafts",
     description: "Clay sculptures, terracotta pottery, Sanskrit calligraphy mandalas, Marathi poetry, and fluid art.",
-    boardImage: "/assets/archive_miscellaneous.png",
+    boardImage: "/assets/archive_miscellaneous.webp",
     aspect: "vertical",
     tag: "Category 07"
   }

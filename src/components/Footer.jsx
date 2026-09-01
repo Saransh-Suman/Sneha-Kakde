@@ -31,7 +31,7 @@ export default function Footer({ onOpenContact, onNavigate }) {
       {/* Top Lion Art Banner (Matching Figma frame 63:207) */}
       <div className="w-full h-36 sm:h-64 md:h-80 relative overflow-hidden bg-brand-dark">
         <ImageWithSkeleton
-          src="/assets/footer_banner.png"
+          src="/assets/footer_banner.webp"
           alt="Sneha Kakde Lion Artwork Banner"
           darkSkeleton={true}
           containerClassName="w-full h-full"

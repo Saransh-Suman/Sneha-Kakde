@@ -17,7 +17,7 @@ export default function ArchivePage({ onBackToHome, onSelectImage }) {
         
         {/* Background Sketch Image */}
         <ImageWithSkeleton
-          src="/assets/archive_banner.png"
+          src="/assets/archive_banner.webp"
           alt="Sneha Kakde 2025 Sketches Artwork Background"
           containerClassName="w-full h-full"
           className="w-full h-full object-cover object-top filter grayscale contrast-105 opacity-90 select-none"
