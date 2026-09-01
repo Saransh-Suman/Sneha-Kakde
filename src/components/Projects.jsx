@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { featuredProjects } from '../data/portfolioData';
-import { ArrowRight, Layers, Eye } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Layers, Eye } from 'lucide-react';
 import ImageWithSkeleton from './ImageWithSkeleton';
 
 export default function Projects({ onSelectProject }) {
@@ -58,49 +58,91 @@ export default function Projects({ onSelectProject }) {
                 {/* Subtle Gradient Overlay for Text Legibility */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent opacity-90 group-hover:opacity-95 transition-opacity" />
 
-                {/* Floating Tag Top Right */}
-                <div className="absolute top-3.5 right-3.5 sm:top-5 sm:right-5 z-10">
-                  <span className="px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-white/90 backdrop-blur-md text-[10px] sm:text-xs font-bold text-gray-800 shadow-md">
-                    {project.category.split('&')[0]}
+                {/* Floating Tags Top Right */}
+                <div className="absolute top-3.5 right-3.5 sm:top-5 sm:right-5 z-10 flex items-center gap-1.5 sm:gap-2">
+                  {project.duration && (
+                    <span className="px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-black/65 backdrop-blur-md text-[10px] sm:text-xs font-semibold text-white/95 shadow-md border border-white/15">
+                      {project.duration}
+                    </span>
+                  )}
+                  <span className="px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-white/95 backdrop-blur-md text-[10px] sm:text-xs font-bold text-gray-800 shadow-md">
+                    {project.category}
                   </span>
                 </div>
 
                 {/* Bottom Overlay Info (Matching Figma layout with bold Arrow) */}
                 <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-7 lg:p-8 z-10 flex items-end justify-between gap-3">
-                  <div className="flex-1">
+                  <div className="flex-1 min-w-0">
                     <h3 className="text-base sm:text-xl lg:text-2xl font-bold text-white tracking-tight flex items-center gap-2 group-hover:text-pink-300 transition-colors">
-                      <span>{project.title}</span>
+                      <span className="truncate">{project.title}</span>
                       <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-2 transition-transform duration-300 text-brand-pink flex-shrink-0" />
                     </h3>
                   </div>
 
-                  {/* View Button Indicator */}
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white group-hover:bg-brand-pink group-hover:text-white transition-all flex-shrink-0">
-                    <Eye className="w-4 h-4 sm:w-5 sm:h-5" />
+                  {/* Actions: Direct Behance Link + View Details */}
+                  <div className="flex items-center gap-2 flex-shrink-0">
+                    {project.behanceLink && (
+                      <a
+                        href={project.behanceLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="px-2.5 sm:px-3 py-1.5 rounded-full bg-black/60 hover:bg-[#0057ff] text-white/95 hover:text-white backdrop-blur-md flex items-center gap-1 text-[11px] sm:text-xs font-bold transition-all border border-white/20 shadow-md group/bhn"
+                        title="Open on Behance"
+                      >
+                        <span>Behance</span>
+                        <ArrowUpRight className="w-3.5 h-3.5 group-hover/bhn:translate-x-0.5 group-hover/bhn:-translate-y-0.5 transition-transform" />
+                      </a>
+                    )}
+
+                    <div 
+                      className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white group-hover:bg-brand-pink group-hover:text-white transition-all flex-shrink-0"
+                      title="Read Case Study"
+                    >
+                      <Eye className="w-4 h-4 sm:w-5 sm:h-5" />
+                    </div>
                   </div>
                 </div>
 
               </div>
 
-              {/* Card Meta & Summary Below Thumbnail (Matching Figma text block) */}
-              <div className="pt-3 sm:pt-4 px-1">
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-brand-pink">
-                    {project.tagline ? project.tagline.split('-')[0] : project.category}
-                  </span>
-                </div>
-                <p className="text-xs sm:text-sm lg:text-base text-gray-600 leading-relaxed line-clamp-2">
-                  {project.summary}
-                </p>
-                <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-2.5 sm:mt-3">
-                  {project.tags.map((tag) => (
-                    <span 
-                      key={tag}
-                      className="text-[10px] sm:text-[11px] font-semibold px-2 sm:px-2.5 py-0.5 rounded-md bg-gray-100 text-gray-600 border border-gray-200/50"
-                    >
-                      {tag}
+              {/* Card Meta & Summary Below Thumbnail */}
+              <div className="pt-3 sm:pt-4 px-1 flex-1 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-1.5">
+                    <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-brand-pink">
+                      {project.tagline}
                     </span>
-                  ))}
+                  </div>
+                  <p className="text-xs sm:text-sm lg:text-base text-gray-600 leading-relaxed line-clamp-3">
+                    {project.summary}
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap items-center justify-between gap-2 mt-3 pt-2.5 border-t border-gray-100">
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                    {project.tags.map((tag) => (
+                      <span 
+                        key={tag}
+                        className="text-[10px] sm:text-[11px] font-semibold px-2 sm:px-2.5 py-0.5 rounded-md bg-gray-100 text-gray-600 border border-gray-200/50"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {project.behanceLink && (
+                    <a
+                      href={project.behanceLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold text-[#0057ff] hover:text-blue-700 hover:underline transition-colors ml-auto"
+                    >
+                      <span>View on Behance</span>
+                      <ArrowUpRight className="w-3 h-3" />
+                    </a>
+                  )}
                 </div>
               </div>
 

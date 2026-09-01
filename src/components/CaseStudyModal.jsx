@@ -44,13 +44,26 @@ export default function CaseStudyModal({ project, onClose, onSelectNext }) {
               <span>Back to Portfolio</span>
             </button>
 
-            <button
-              onClick={onClose}
-              className="p-1.5 sm:p-2 rounded-full text-gray-400 hover:text-gray-900 hover:bg-gray-100 transition-all cursor-pointer"
-              aria-label="Close modal"
-            >
-              <X className="w-5 h-5" />
-            </button>
+            <div className="flex items-center gap-2 sm:gap-3">
+              {project.behanceLink && (
+                <a
+                  href={project.behanceLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 rounded-full bg-[#0057ff] text-white hover:bg-blue-700 transition-all text-xs font-bold shadow-sm hover:scale-105"
+                >
+                  <span>Behance</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </a>
+              )}
+              <button
+                onClick={onClose}
+                className="p-1.5 sm:p-2 rounded-full text-gray-400 hover:text-gray-900 hover:bg-gray-100 transition-all cursor-pointer"
+                aria-label="Close modal"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
           </div>
 
           {/* Hero Image / Banner */}
@@ -200,12 +213,12 @@ export default function CaseStudyModal({ project, onClose, onSelectNext }) {
             {/* Footer inside Modal */}
             <div className="pt-6 sm:pt-8 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
               <a
-                href={personalInfo.links.behance}
+                href={project.behanceLink || personalInfo.links.behance}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-gray-800 hover:text-brand-pink transition-colors"
+                className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-[#0057ff] hover:text-blue-700 hover:underline transition-colors"
               >
-                <span>View project on Behance</span>
+                <span>View {project.title} on Behance</span>
                 <ArrowUpRight className="w-4 h-4" />
               </a>
 

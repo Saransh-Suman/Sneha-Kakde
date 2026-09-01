@@ -8,7 +8,7 @@ A responsive, high-performance portfolio website built for **Sneha Kakde** (Crea
 
 - **Pixel-Perfect Figma Design**: Matching layout, typography, exact color tokens, and original high-resolution assets.
 - **Interactive Hero**: Features the custom character mascot with sticker drop-shadow, floating badges, and dynamic typography.
-- **Deep Case Studies Reader**: Full case study modal system for **ChemThread**, **AkshiO (Khelat Shikuya)**, **Adyam Rebranding**, **Wearables Ecosystem**, and **Financial Literacy**.
+- **Deep Case Studies Reader**: Full case study modal system for **ChemThread**, **AkshiO (Khelat Shikuya)**, **FinGuide AI**, **Adyam**, and **Tritva (Yoga Studio)**.
 - **Multi-Disciplinary Interests Grid**: 9 custom icon cards highlighting design philosophy and varied creative pursuits.
 - **Studio Experiments Ribbon**: Interactive horizontal carousel showcasing physical sculptures, acrylic canvases, gesture sketches, and published Marathi poetry.
 - **2025 Archive & Contents Showcase**: 7 numbered discipline tabs (Illustration, Graphic Design, Character Concept, Product Design, Photography, 3D Animation, and Miscellaneous).

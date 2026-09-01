@@ -320,48 +320,41 @@ export const craftGallery = [
   },
   {
     id: 32,
-    title: "Cultural Dance & Expressive Movement",
-    subtitle: "Capturing dynamic movement, mudras and folk performances",
-    image: "/assets/craft_frame130_17_2b875c8f.png",
-    aspect: "portrait"
-  },
-  {
-    id: 33,
     title: "Handmade Jewelry & Terracotta Beads",
     subtitle: "Wearable micro-sculptures and fired clay beads",
     image: "/assets/craft_frame130_18_d55a4701.png",
     aspect: "portrait"
   },
   {
-    id: 34,
+    id: 33,
     title: "Community Art Circle & Sketchwalk",
     subtitle: "Live plein-air sketching and creative storytelling",
     image: "/assets/craft_frame130_19_55f6b731.png",
     aspect: "portrait"
   },
   {
-    id: 35,
+    id: 34,
     title: "Monsoon Life & Street Vignettes",
     subtitle: "Documentary photo series capturing everyday moments",
     image: "/assets/craft_frame130_20_4d95d07d.png",
     aspect: "landscape"
   },
   {
-    id: 36,
+    id: 35,
     title: "Stage Production & Set Visuals",
     subtitle: "Atmospheric lighting, stage compositions and scenography",
     image: "/assets/craft_frame130_21_c9fdeec7.png",
     aspect: "landscape"
   },
   {
-    id: 37,
+    id: 36,
     title: "Traditional Brass Metalware Craft",
     subtitle: "Etched metalware, bell metal craft and patina studies",
     image: "/assets/craft_frame130_22_5783f979.png",
     aspect: "portrait"
   },
   {
-    id: 38,
+    id: 37,
     title: "Creative Workshop & Student Dialogue",
     subtitle: "Facilitating interactive visual design and craft discussions",
     image: "/assets/craft_frame130_23_3be4cad5.png",
@@ -373,19 +366,21 @@ export const featuredProjects = [
   {
     id: "chemthread",
     title: "ChemThread",
-    tagline: "Making Chemistry Easy to See and Learn",
-    category: "Learning Experience & UX",
-    summary: "Transforming abstract science curricula into intuitive visual scaffolding and spiral learning mental models for 8th & 9th grade students.",
+    tagline: "Cross-Grade Chemistry Learning Dashboard",
+    category: "UI/UX Design",
+    duration: "1 month",
+    summary: "Connected fragmented Class 6-10 chemistry content through information architecture, concept mapping, and progressive learning pathways.",
+    behanceLink: "https://www.behance.net/gallery/255106251/ChemThread-Cross-Grade-Chemistry-Learning-Dashboard",
     coverImage: "/assets/chemthread_mockup.png",
     accentColor: "#059669",
-    tags: ["Learning Design", "UX Research", "Visual Scaffolding", "EdTech"],
+    tags: ["UI/UX Design", "Information Architecture", "Concept Mapping", "Learning Pathways"],
     metrics: [
+      { label: "Duration", value: "1 Month" },
       { label: "Target Audience", value: "Classes 6–10" },
-      { label: "Pedagogy Shift", value: "Outside-In" },
-      { label: "Focus Element", value: "Carbon & Allotropy" }
+      { label: "Pedagogy Shift", value: "Concept Mapping" }
     ],
     details: {
-      abstract: "Why does chemistry feel like an insurmountable wall to so many bright students? This case study investigates systemic design failures in the Maharashtra State Board science curriculum and introduces 'threading the knowledge' — a pedagogical method turning confusing symbols into tangible, masterable visual systems.",
+      abstract: "Why does chemistry feel like an insurmountable wall to so many bright students? This case study investigates systemic design failures in the science curriculum and introduces concept mapping, progressive learning pathways, and visual scaffolding turning confusing chemical formulas into masterable mental models.",
       problemStatement: "Chemistry textbooks present concepts as isolated, text-heavy chapters with little visual continuity, scattered syllabus sequencing, and no cross-grade connections — forcing students to mentally rebuild foundational knowledge every year without tools to recall or differentiate.",
       challenges: [
         {
@@ -424,19 +419,21 @@ export const featuredProjects = [
   {
     id: "akshio-english",
     title: "AkshiO — Khelat Shikuya",
-    tagline: "Multi-User English Learning Ecosystem for Low-Resource Schools",
-    category: "Social Impact & EdTech",
-    summary: "Gamified bilingual learning platform empowering students in low-resource rural schools in India to develop English listening, speaking, reading, and writing skills.",
+    tagline: "Multi-User English Learning Ecosystem",
+    category: "UI/UX Design",
+    duration: "4 months",
+    summary: "Designed an offline multi-user learning ecosystem integrating student app, parent mode and teacher dashboard through user research, user flows, information architecture and a five-level LSRW learning journey.",
+    behanceLink: "https://www.behance.net/gallery/255105131/AkshiO-Multi-User-English-Learning-Ecosystem?platform=direct",
     coverImage: "/assets/storybook.png",
     accentColor: "#E6004C",
-    tags: ["Bilingual UX", "Rural Education", "Gamification", "Hardware-Software"],
+    tags: ["UI/UX Design", "LSRW Journey", "EdTech Ecosystem", "Offline-First"],
     metrics: [
-      { label: "Rural Literacy Gap", value: "42% struggling" },
-      { label: "Sync Speed", value: "< 4s Local Sync" },
-      { label: "Infrastructure", value: "100% Offline-First" }
+      { label: "Duration", value: "4 Months" },
+      { label: "Touchpoints", value: "Student, Parent & Teacher" },
+      { label: "Pedagogy", value: "5-Level LSRW Journey" }
     ],
     details: {
-      abstract: "AkshiO: Khelat Shikuya is a multi-user English learning ecosystem tailored for schools with limited digital access. By blending tangible group play, avatars, audio prompts, and bilingual cues, it replaces classroom anxiety with collaborative confidence.",
+      abstract: "AkshiO: Khelat Shikuya is a multi-user English learning ecosystem tailored for schools with limited digital access. Designed through in-depth user research and information architecture, it seamlessly connects a student app, parent mode, and teacher dashboard along a structured 5-level Listening, Speaking, Reading, and Writing (LSRW) journey.",
       problemStatement: "Over 60% of rural primary schools lack digital infrastructure and up to 20% operate with a single teacher. Students experience severe language transfer anxiety and lack opportunities for oral English practice (< 5 min per student/month).",
       challenges: [
         {
@@ -454,58 +451,120 @@ export const featuredProjects = [
       ],
       solutions: [
         {
-          title: "Bilingual Picture & Audio Scaffolding",
-          desc: "Integrates mother-tongue voice prompts and interactive visual cards so learners build vocabulary naturally."
+          title: "5-Level LSRW Progressive Journey",
+          desc: "Scaffolds English learning from listening and speech recognition to phonetic reading and interactive writing exercises."
         },
         {
-          title: "Peer-to-Peer Station Play",
-          desc: "Small groups solve cooperative language challenges using tangible interactive controllers and instant audio feedback."
+          title: "Multi-User Triad Integration",
+          desc: "Unifies the student gamified experience, parent engagement mode, and an intuitive offline educator dashboard."
         },
         {
-          title: "Offline-Ready Educator Dashboard",
-          desc: "Allows teachers to monitor individual student progress with a simple 2-click interface without internet."
+          title: "Bilingual Audio-Visual Scaffolding",
+          desc: "Integrates vernacular prompts with relatable cultural stories so learners build confidence naturally."
         }
       ],
       gallery: [
-        { url: "/assets/storybook.png", caption: "AkshiO Illustrated Interactive Storybook and Device" }
+        { url: "/assets/storybook.png", caption: "AkshiO Illustrated Interactive Storybook and Device Ecosystem" }
+      ]
+    }
+  },
+  {
+    id: "finguide-ai",
+    title: "FinGuide AI",
+    tagline: "AI-Powered Financial Companion",
+    category: "UI/UX Design",
+    duration: "2 months",
+    summary: "Developed an AI-powered financial companion using user-centered design to help first-time earners understand, plan, and build better money habits.",
+    behanceLink: "https://www.behance.net/gallery/255106477/FinGuide-AI-AI-Powered-Financial-Companion?platform=direct",
+    coverImage: "/assets/finguide_cover.png",
+    accentColor: "#0D9488",
+    tags: ["UI/UX Design", "AI Companion", "Fintech", "Behavioral UX"],
+    metrics: [
+      { label: "Duration", value: "2 Months" },
+      { label: "Audience", value: "First-Time Earners" },
+      { label: "Framework", value: "Understand, Plan, Act, Grow" }
+    ],
+    details: {
+      abstract: "FinGuide AI is an AI-powered financial companion developed through user-centered design to help young adults and first-time earners understand their finances, plan systematically, take smart actions, and grow sustainable money habits without fear or intimidating banking jargon.",
+      problemStatement: "Young adults entering the workforce struggle with overwhelming financial products, hidden fees, impulsive spending cycles, and a lack of actionable budgeting guidance, leading to financial stress and decision fatigue.",
+      challenges: [
+        {
+          title: "Jargon Overload & Anxiety",
+          desc: "Traditional banking apps use intimidating terminology that alienates young beginners."
+        },
+        {
+          title: "Impulsive Spending Cycles",
+          desc: "Lack of contextual real-time feedback allows savings to disappear before monthly obligations are met."
+        },
+        {
+          title: "Budgeting Drop-off",
+          desc: "Manual expense categorization is tedious, causing 80% of first-time budgeters to quit within weeks."
+        }
+      ],
+      solutions: [
+        {
+          title: "1. Conversational AI Guidance",
+          desc: "Translates complex financial terms into friendly, actionable advice with contextual real-time nudges."
+        },
+        {
+          title: "2. Smart Automated Buckets",
+          desc: "Splits income into Essentials, Savings/Growth, and Guilt-Free Spending as soon as salaries are credited."
+        },
+        {
+          title: "3. 'Understand, Plan, Act, Grow' Methodology",
+          desc: "A gamified 4-stage behavioral framework that celebrates micro-savings milestones and builds long-term confidence."
+        }
+      ],
+      gallery: [
+        { url: "/assets/finguide_cover.png", caption: "FinGuide AI — Brand Identity & Design System" }
       ]
     }
   },
   {
     id: "adyam-branding",
-    title: "Adyam Brand Identity",
-    tagline: "Visual Identity, Logo Architecture & Rebranding System",
-    category: "Branding & Visual Design",
-    summary: "Complete visual identity, logo design system, brand book guidelines, and packaging applications created for Adyam.",
+    title: "Adyam",
+    tagline: "Maharashtrian Brand Identity & Packaging",
+    category: "Visual Design",
+    duration: "1 month",
+    summary: "Built a Maharashtrian-rooted fresh-food brand inspired by “Old is Gold,” combining brand identity, packaging, and mascot design.",
+    behanceLink: "https://www.behance.net/gallery/253428839/Adyam-Branding?platform=direct",
     coverImage: "/assets/adyam_cover.png",
     accentColor: "#D97706",
-    tags: ["Brand Identity", "Brand Book", "Typography", "Packaging"],
+    tags: ["Visual Design", "Brand Identity", "Packaging", "Mascot Design"],
     metrics: [
-      { label: "Deliverables", value: "21 Brand Slides" },
-      { label: "Scope", value: "Identity & Print" },
-      { label: "Palette", value: "Warm Earth & Gold" }
+      { label: "Duration", value: "1 Month" },
+      { label: "Inspiration", value: "Old is Gold" },
+      { label: "Deliverables", value: "Identity, Packaging & Mascot" }
     ],
     details: {
-      abstract: "A comprehensive brand identity overhaul for Adyam, combining cultural elegance with modern minimalist design. The project encompasses logo anatomy, grid ratios, typography hierarchies, packaging mockups, and extensive brand application rules.",
-      problemStatement: "Adyam required a mature, distinctive visual language that could seamlessly scale across luxury packaging, digital platforms, editorial stationery, and marketing collateral.",
+      abstract: "Adyam is a Maharashtrian-rooted fresh-food brand identity crafted around the philosophy of 'Old is Gold'. The project combines warm cultural heritage, bespoke packaging systems, typography hierarchies, and friendly mascot design celebrating pure traditional flavors.",
+      problemStatement: "Adyam required a distinctive, authentic visual language that honors traditional Maharashtrian dairy and fresh-food heritage while standing out on modern retail shelves and digital delivery apps.",
       challenges: [
         {
-          title: "Scalability Across Touchpoints",
-          desc: "Ensuring the logo mark remains legible and impactful on small product labels as well as giant architectural signage."
+          title: "Heritage vs Modern Shelf Appeal",
+          desc: "Balancing the nostalgia of 'Old is Gold' with crisp, contemporary packaging standards that appeal to modern families."
         },
         {
-          title: "Cultural Warmth vs Modern Cleanliness",
-          desc: "Balancing heritage craftsmanship with sleek contemporary aesthetics."
+          title: "Multi-SKU Packaging Consistency",
+          desc: "Creating packaging designs for Masala Chaas, Lassi variants, and dairy products that maintain distinct flavor cues under a unified brand umbrella."
+        },
+        {
+          title: "Mascot & Emotional Connection",
+          desc: "Designing an inviting brand character that communicates trust, warmth, and wholesome purity."
         }
       ],
       solutions: [
         {
-          title: "Geometric Monogram & Grid",
-          desc: "Crafted a proportioned symbol based on mathematical circular arcs and clean vertical cuts."
+          title: "1. 'Old is Gold' Visual Philosophy",
+          desc: "A rich color palette of turmeric golds, terracotta, and warm creams referencing traditional brass cookware and Maharashtrian kitchens."
         },
         {
-          title: "21-Page Comprehensive Brand Book",
-          desc: "Documented exact color codes (CMYK, RGB, Pantone), minimum clear spaces, improper usage rules, and packaging dielines."
+          title: "2. Devanagari & Latin Typography Architecture",
+          desc: "Harmonious bilingual typography pairings that maintain legibility across packaging labels, posters, and digital ads."
+        },
+        {
+          title: "3. Complete Packaging & Mascot Guidelines",
+          desc: "Full product line dielines, mascot poses, carousel campaigns, and print specification standards."
         }
       ],
       gallery: [
@@ -518,86 +577,54 @@ export const featuredProjects = [
     }
   },
   {
-    id: "wearable-ecosystem",
-    title: "Ecosystem for Wearable Device",
-    tagline: "Monitoring Children's Movement & Safety with Joyful Hardware UX",
-    category: "Hardware & IoT UX",
-    summary: "Designing an end-to-end wearable device and companion application ecosystem for monitoring children's physical activity, safety zones, and health metrics.",
-    coverImage: "/assets/misc_3.png",
-    accentColor: "#2563EB",
-    tags: ["IoT Ecosystem", "Hardware UX", "Safety Monitoring", "Mobile Design"],
+    id: "tritva",
+    title: "Tritva",
+    tagline: "Yoga Studio Visual Identity & Branding",
+    category: "Graphic Design",
+    duration: "1 month",
+    summary: "Developed a cohesive visual identity through competitor research, visual analysis, logo development, typography, colour selection, and brand applications across stationery and merchandise.",
+    behanceLink: "https://www.behance.net/gallery/255105741/Tritva",
+    coverImage: "/assets/tritva_cover.png",
+    accentColor: "#E67E22",
+    tags: ["Graphic Design", "Brand Identity", "Typography", "Merchandise"],
     metrics: [
-      { label: "Device Form", value: "Smart Band + Hub" },
-      { label: "Battery Life", value: "7 Days Active" },
-      { label: "Parent App", value: "Real-time Telemetry" }
+      { label: "Duration", value: "1 Month" },
+      { label: "Domain", value: "Yoga & Wellness" },
+      { label: "Scope", value: "Identity & Merchandise" }
     ],
     details: {
-      abstract: "An integrated smart wearable and mobile experience designed to make children's activity tracking delightful while giving parents reliable, non-intrusive safety telemetry and activity insights.",
-      problemStatement: "Most child-monitoring devices are clunky, anxiety-inducing for parents, and easily discarded by children who find them boring or uncomfortable.",
+      abstract: "Tritva is a yoga studio visual identity developed to deliver a calm, welcoming, and trustworthy sanctuary for wellness seekers. Centered on 'harmony in motion', the identity fuses traditional roots with sophisticated modern design across signage, stationery, and lifestyle merchandise.",
+      problemStatement: "The local wellness market's most engaging brands are visually cluttered, driving away beginners seeking clarity. Tritva needed an identity that establishes a minimalistic, welcoming, and trustworthy presence fusing traditional roots with modern sophistication.",
       challenges: [
         {
-          title: "Child Engagement",
-          desc: "Gamifying physical movement so children want to wear and interact with the device daily."
+          title: "Market Clutter & Intimidation",
+          desc: "Existing yoga studios often use heavy, complex religious imagery that feels unapproachable to beginners."
         },
         {
-          title: "Calm UX for Parents",
-          desc: "Delivering important location and health alerts without triggering unnecessary alarm fatigue."
+          title: "Balance of Strength & Fluidity",
+          desc: "Capturing both the rooted discipline of asana practice and the serene flow of breath in a single mark."
+        },
+        {
+          title: "Cross-Medium Material Application",
+          desc: "Ensuring the mark renders cleanly on textured yoga mats, engraved wood signs, ceramics, water bottles, and fabric."
         }
       ],
       solutions: [
         {
-          title: "Playful Physical Form Factor",
-          desc: "Soft hypoallergenic materials with snap-on modular badges and tactile feedback."
+          title: "1. Parvatasana (Mountain Pose) Monogram",
+          desc: "Symbol represents the Parvatasana pose, embodying stability, strength, and groundedness — standing tall yet rooted, balanced in motion."
         },
         {
-          title: "Companion Mobile Experience",
-          desc: "Intuitive activity rings, smart geofences, and positive reinforcement reward systems."
+          title: "2. The Essence of Three (Tritva Philosophy)",
+          desc: "Reflects the harmonious balance of mind, body, and breath through flowing organic geometry and warm earthy ochres."
+        },
+        {
+          title: "3. End-to-End Lifestyle Merchandise",
+          desc: "Designed studio signage, business cards, instructor lanyards, yoga mats, stainless steel flasks, and ceramic mugs."
         }
       ],
       gallery: [
-        { url: "/assets/misc_3.png", caption: "Wearable Device & Digital Interface Architecture" }
-      ]
-    }
-  },
-  {
-    id: "financial-literacy",
-    title: "Financial Literacy AI",
-    tagline: "Helping First-Time Earners Build Healthy Habits through AI Guidance",
-    category: "Fintech & AI Design",
-    summary: "Empowering young professionals and first-time earners with intelligent conversational AI nudges, smart budget buckets, and behavioral financial coaching.",
-    coverImage: "/assets/misc_2.png",
-    accentColor: "#7C3AED",
-    tags: ["Fintech", "AI UX", "Behavioral Design", "Conversational UI"],
-    metrics: [
-      { label: "Audience", value: "Gen Z & First-Time Earners" },
-      { label: "Mechanism", value: "Behavioral AI Nudges" },
-      { label: "Core Feature", value: "Micro-Saving Buckets" }
-    ],
-    details: {
-      abstract: "A mobile financial companion that dismantles financial jargon. Using behavioral economics and predictive AI, it provides personalized, proactive insights to turn early paychecks into long-term financial freedom.",
-      problemStatement: "Young adults entering the workforce struggle with overwhelming financial products, hidden fees, lifestyle inflation, and a lack of actionable budgeting guidance.",
-      challenges: [
-        {
-          title: "Jargon Overload",
-          desc: "Traditional banking apps use intimidating terminology that alienates young beginners."
-        },
-        {
-          title: "Impulsive Spending Cycles",
-          desc: "Lack of real-time friction allows savings to disappear before monthly bills are secured."
-        }
-      ],
-      solutions: [
-        {
-          title: "Smart Automated Buckets",
-          desc: "Splits income into Essentials, Growth, and Guilt-Free Spending upon salary credit."
-        },
-        {
-          title: "Conversational Money Buddy",
-          desc: "Provides contextual advice before major purchases with simple pros and cons."
-        }
-      ],
-      gallery: [
-        { url: "/assets/misc_2.png", caption: "Financial Coaching & Interactive Dashboard" }
+        { url: "/assets/tritva_cover.png", caption: "Tritva Visual Identity System, Ideation & Merchandise Mockups" }
       ]
     }
   }
