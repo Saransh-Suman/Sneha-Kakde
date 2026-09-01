@@ -27,7 +27,7 @@ export const personalInfo = {
   links: {
     cv: "https://drive.google.com/drive/folders/1t-wXXZ5elEwP7FApHsy4C2uadN2GslU7",
     notion: "https://amazing-piccolo-3e3.notion.site/Writings-30cd1d702d3c80a8a713c4fce01add6b",
-    instagram: "https://www.instagram.com/blinking_thingss?igsi=NnkyYXF1OTlpcWpk&utm_source=qr",
+    instagram: "https://www.instagram.com/blinking_thingss?igsi=MWVlMzJseG5zNmJ0aA==",
     youtube: "https://youtube.com/@ma_thecreativespace?si=BXQdWavSIxofWyfS",
     behance: "https://www.behance.net/kakdesneha",
     linkedin: "https://www.linkedin.com/in/sneha-kakde-9667232ab?utm_source=share_via&utm_content=profile&utm_medium=member_ios"

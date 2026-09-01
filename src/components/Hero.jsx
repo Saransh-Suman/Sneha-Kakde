@@ -172,6 +172,14 @@ export default function Hero({ onOpenContact }) {
               Behance ↗
             </a>
             <a 
+              href={personalInfo.links.instagram} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="hover:text-brand-pink transition-colors"
+            >
+              Instagram ↗
+            </a>
+            <a 
               href={personalInfo.links.notion} 
               target="_blank" 
               rel="noopener noreferrer" 
