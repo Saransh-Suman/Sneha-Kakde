@@ -4,6 +4,7 @@ import { personalInfo, craftGallery } from '../data/portfolioData';
 import { Sparkles, Eye } from 'lucide-react';
 import ImageWithSkeleton from './ImageWithSkeleton';
 import OffTheGridCoverflow from './OffTheGridCoverflow';
+import TypewriterBanner from './TypewriterBanner';
 
 export default function About({ onSelectCraft }) {
   const duplicatedGallery = [...craftGallery, ...craftGallery];
@@ -88,24 +89,8 @@ export default function About({ onSelectCraft }) {
           </p>
         </div>
 
-        {/* Quote Badge Banner (Matching Figma exact pill) */}
-        <div className="flex justify-center pt-2">
-          <motion.div 
-            initial={{ scale: 0.96, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            viewport={{ once: true }}
-            className="w-full max-w-4xl text-center py-3.5 sm:py-5 px-4 sm:px-10 rounded-2xl sm:rounded-full border border-neutral-300 bg-white shadow-sm hover:shadow-md transition-shadow"
-          >
-            <p className="text-xs sm:text-lg lg:text-xl font-bold tracking-tight text-neutral-900 leading-snug sm:leading-relaxed">
-              <span className="text-brand-pink font-extrabold italic">{personalInfo.quoteBadge.part1}</span>
-              <span>{personalInfo.quoteBadge.middle1}</span>
-              <span className="text-brand-pink font-extrabold italic">{personalInfo.quoteBadge.part2}</span>
-              <span>{personalInfo.quoteBadge.middle2}</span>
-              <span className="text-brand-pink font-extrabold italic">{personalInfo.quoteBadge.part3}</span>
-              <span>{personalInfo.quoteBadge.ending}</span>
-            </p>
-          </motion.div>
-        </div>
+        {/* Typewriter Banner with Modern Rounded Corners */}
+        <TypewriterBanner />
 
         {/* Hands-on Crafts & Studio Photo Automatic Smooth Sliding Carousel */}
         <div className="space-y-4 sm:space-y-6 pt-4">
