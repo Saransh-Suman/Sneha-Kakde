@@ -469,54 +469,54 @@ export const featuredProjects = [
     }
   },
   {
-    id: "finguide-ai",
-    title: "FinGuide AI",
-    tagline: "AI-Powered Financial Companion",
-    category: "UI/UX Design",
-    duration: "2 months",
-    summary: "Developed an AI-powered financial companion using user-centered design to help first-time earners understand, plan, and build better money habits.",
-    behanceLink: "https://www.behance.net/gallery/255106477/FinGuide-AI-AI-Powered-Financial-Companion?platform=direct",
-    coverImage: "/assets/finguide_cover.webp",
-    accentColor: "#0D9488",
-    tags: ["UI/UX Design", "AI Companion", "Fintech", "Behavioral UX"],
+    id: "cp-rehab-platform",
+    title: "CP Rehabilitation Monitoring Platform",
+    tagline: "UX/UI & Visual Design",
+    category: "UX/UI Design",
+    duration: "Ongoing",
+    summary: "Designing a multi-user digital platform for Cerebral Palsy rehabilitation to track AFO usage, movement and adherence, while developing accessible UX/UI, visual identity, and communication systems to improve collaboration between families and healthcare professionals.",
+    behanceLink: "https://www.behance.net/kakdesneha",
+    coverImage: "/assets/cp_rehab_cover.png",
+    accentColor: "#0284C7",
+    tags: ["UX/UI Design", "Visual Design", "Accessibility", "Healthcare Tech", "AFO Tracking"],
     metrics: [
-      { label: "Duration", value: "2 Months" },
-      { label: "Audience", value: "First-Time Earners" },
-      { label: "Framework", value: "Understand, Plan, Act, Grow" }
+      { label: "Status", value: "Ongoing" },
+      { label: "Focus", value: "Pediatric CP Rehab" },
+      { label: "Ecosystem", value: "Families & Clinicians" }
     ],
     details: {
-      abstract: "FinGuide AI is an AI-powered financial companion developed through user-centered design to help young adults and first-time earners understand their finances, plan systematically, take smart actions, and grow sustainable money habits without fear or intimidating banking jargon.",
-      problemStatement: "Young adults entering the workforce struggle with overwhelming financial products, hidden fees, impulsive spending cycles, and a lack of actionable budgeting guidance, leading to financial stress and decision fatigue.",
+      abstract: "CP Rehabilitation Monitoring Platform is a multi-user digital health ecosystem designed for Cerebral Palsy rehabilitation. It tracks Ankle-Foot Orthosis (AFO) usage, physical movement, and therapy adherence while establishing an inclusive UX/UI, visual identity, and communication system to bridge the gap between families, caregivers, and multidisciplinary healthcare teams.",
+      problemStatement: "Children with Cerebral Palsy rely on Ankle-Foot Orthoses (AFOs) for gait correction and mobility, but adherence tracking is predominantly reliant on subjective recall. Families experience wear-schedule fatigue and lack clarity on progress, while clinicians have minimal visibility into real-world adherence between quarterly consultations.",
       challenges: [
         {
-          title: "Jargon Overload & Anxiety",
-          desc: "Traditional banking apps use intimidating terminology that alienates young beginners."
+          title: "Wear-Time Compliance & Fatigue",
+          desc: "Sustaining daily recommended AFO wear hours is difficult for children and stressful for parents without motivating milestone tracking."
         },
         {
-          title: "Impulsive Spending Cycles",
-          desc: "Lack of contextual real-time feedback allows savings to disappear before monthly obligations are met."
+          title: "Fragmented Clinical Feedback Loop",
+          desc: "Clinicians, physiotherapists, and orthotists operate in silos without shared daily movement metrics or longitudinal adherence trends."
         },
         {
-          title: "Budgeting Drop-off",
-          desc: "Manual expense categorization is tedious, causing 80% of first-time budgeters to quit within weeks."
+          title: "Accessible Triad Interface",
+          desc: "The platform must accommodate disparate user personas: intuitive, low-stress tracking for busy caregivers alongside deep clinical data telemetry for specialists."
         }
       ],
       solutions: [
         {
-          title: "1. Conversational AI Guidance",
-          desc: "Translates complex financial terms into friendly, actionable advice with contextual real-time nudges."
+          title: "1. Real-Time AFO Adherence Dashboard",
+          desc: "Automates wear-time tracking with clear daily progress rings, gait session logs, and active movement milestones."
         },
         {
-          title: "2. Smart Automated Buckets",
-          desc: "Splits income into Essentials, Savings/Growth, and Guilt-Free Spending as soon as salaries are credited."
+          title: "2. Triad Collaboration & Note Sharing",
+          desc: "Enables shared therapy logs, routine exercise videos, and direct asynchronous communication between parents and clinical specialists."
         },
         {
-          title: "3. 'Understand, Plan, Act, Grow' Methodology",
-          desc: "A gamified 4-stage behavioral framework that celebrates micro-savings milestones and builds long-term confidence."
+          title: "3. Accessible & Compassionate Visual Identity",
+          desc: "Employs calm, high-contrast healthcare visual language, pediatric-friendly motivational badges, and stress-free notification systems."
         }
       ],
       gallery: [
-        { url: "/assets/finguide_cover.webp", caption: "FinGuide AI — Brand Identity & Design System" }
+        { url: "/assets/cp_rehab_cover.png", caption: "CP Rehabilitation Monitoring Platform — Pediatric UX/UI Dashboard & Mobile App" }
       ]
     }
   },
