@@ -143,7 +143,7 @@ export default function OffTheGridCoverflow() {
   }, [isCardExpanded]);
 
   // Automatic sliding timer:
-  // Smoothly advances every 3.2 seconds.
+  // Smoothly advances every 2.2 seconds for a brisk, dynamic sliding rhythm.
   // Pauses ONLY when:
   // 1. Center card is expanded for reading
   // 2. User is actively dragging / swiping
@@ -154,7 +154,7 @@ export default function OffTheGridCoverflow() {
 
     const timer = setInterval(() => {
       setVirtualIndex((prev) => prev + 1);
-    }, 3200);
+    }, 2200);
 
     return () => clearInterval(timer);
   }, [isAutoPlayPaused, isCardExpanded, isInteracting, isCenterHovered, virtualIndex]);
@@ -365,12 +365,12 @@ export default function OffTheGridCoverflow() {
                 filter: `blur(${blurAmount}px)`
               }}
               transition={{
-                x: { type: "spring", stiffness: 220, damping: 26, mass: 0.9 },
-                y: { type: "spring", stiffness: 220, damping: 26, mass: 0.9 },
-                scale: { duration: 0.45, ease: [0.25, 1, 0.5, 1] },
-                rotateY: { duration: 0.45, ease: [0.25, 1, 0.5, 1] },
-                opacity: { duration: 0.35 },
-                filter: { duration: 0.35 }
+                x: { type: "spring", stiffness: 300, damping: 28, mass: 0.65 },
+                y: { type: "spring", stiffness: 300, damping: 28, mass: 0.65 },
+                scale: { duration: 0.32, ease: [0.2, 1, 0.4, 1] },
+                rotateY: { duration: 0.32, ease: [0.2, 1, 0.4, 1] },
+                opacity: { duration: 0.25 },
+                filter: { duration: 0.25 }
               }}
               drag={isActive ? 'x' : false}
               dragConstraints={{ left: 0, right: 0 }}
