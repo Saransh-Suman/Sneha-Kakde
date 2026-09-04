@@ -99,9 +99,6 @@ export default function About({ onSelectCraft }) {
               <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-brand-pink flex-shrink-0" />
               <span>Studio Experiments, Sculptures & Works</span>
             </h4>
-            <span className="text-[11px] sm:text-xs text-gray-400 font-semibold hidden sm:inline-block">
-              Hover to pause • Click to inspect & zoom
-            </span>
           </div>
 
           {/* Smooth Auto-sliding Track */}
