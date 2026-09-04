@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { archiveCategories } from '../data/portfolioData';
-import { ZoomIn, Maximize2, BookOpen, Eye, Play, ArrowUpRight } from 'lucide-react';
+import { BookOpen, Play, ArrowUpRight } from 'lucide-react';
 import ImageWithSkeleton from './ImageWithSkeleton';
 
 const categoryStyles = {
@@ -89,9 +89,6 @@ export default function CategoryShowcase({ onSelectImage }) {
           <div className="bg-[#E64A19] text-white text-xs sm:text-sm font-extrabold px-3.5 sm:px-5 py-1 sm:py-1.5 rounded-r-lg shadow-sm -ml-3 sm:-ml-7 lg:-ml-9 uppercase tracking-wider">
             Contents
           </div>
-          <span className="text-[11px] sm:text-xs font-semibold text-stone-500 hidden sm:inline-block">
-            Click any discipline circle to view its full presentation board
-          </span>
         </div>
 
         {/* 7 Numbered Circles Row (01 - 07 Disciplines) */}
@@ -156,13 +153,12 @@ export default function CategoryShowcase({ onSelectImage }) {
           className="bg-white rounded-xl sm:rounded-3xl p-2 sm:p-6 lg:p-8 border border-gray-200/90 shadow-xl space-y-4 sm:space-y-6"
         >
           {/* Header Bar */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 sm:pb-5 border-b border-gray-100 gap-2 sm:gap-4 px-1 sm:px-0">
+          <div className="pb-3 sm:pb-5 border-b border-gray-100 px-1 sm:px-0">
             <div>
               <div className="inline-flex items-center gap-1.5 sm:gap-2 mb-1">
                 <span className="text-[10px] sm:text-xs font-black uppercase tracking-wider px-2 sm:px-2.5 py-0.5 rounded-full bg-gray-100 text-gray-800">
                   Category {currentCategory.number}
                 </span>
-                <span className="text-[10px] sm:text-xs font-bold text-gray-400">• High-Resolution Board</span>
               </div>
               <h3 className="text-xl sm:text-3xl font-extrabold text-brand-dark tracking-tight">
                 {currentCategory.title}
@@ -171,17 +167,6 @@ export default function CategoryShowcase({ onSelectImage }) {
                 {currentCategory.description}
               </p>
             </div>
-
-            {/* Action Buttons */}
-            {currentCategory.id !== 'illustration' && (
-              <button
-                onClick={() => handleOpenBoard()}
-                className="inline-flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-5 py-1.5 sm:py-2.5 rounded-full bg-brand-dark hover:bg-black text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-lg transition-all hover:scale-105 active:scale-95 self-start sm:self-auto cursor-pointer"
-              >
-                <Maximize2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-pink-400" />
-                <span>Zoom & Inspect</span>
-              </button>
-            )}
           </div>
 
           {/* SPECIFIC VIEW FOR CATEGORY 01: ILLUSTRATION (Storybook 01 & Storybook 02) */}
@@ -210,18 +195,9 @@ export default function CategoryShowcase({ onSelectImage }) {
                 const activeSb = currentCategory.storybooks[activeStorybookIndex] || currentCategory.storybooks[0];
                 return (
                   <div className="space-y-3 sm:space-y-4">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-2 px-1 sm:px-0">
-                      <div>
-                        <h4 className="text-sm sm:text-lg font-extrabold text-neutral-900">{activeSb.title}</h4>
-                        <p className="text-[11px] sm:text-sm text-neutral-500">{activeSb.subtitle}</p>
-                      </div>
-                      <button
-                        onClick={() => handleOpenBoard(activeSb.title, activeSb.subtitle, activeSb.image)}
-                        className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-4 sm:py-2 rounded-full bg-brand-dark hover:bg-black text-white text-xs font-bold shadow transition-all hover:scale-105 cursor-pointer self-start sm:self-auto"
-                      >
-                        <Maximize2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-pink-400" />
-                        <span>Zoom & Inspect</span>
-                      </button>
+                    <div className="px-1 sm:px-0">
+                      <h4 className="text-sm sm:text-lg font-extrabold text-neutral-900">{activeSb.title}</h4>
+                      <p className="text-[11px] sm:text-sm text-neutral-500">{activeSb.subtitle}</p>
                     </div>
 
                     <div
@@ -238,25 +214,13 @@ export default function CategoryShowcase({ onSelectImage }) {
 
                     {/* Also display the other storybook below for immediate complete discovery */}
                     <div className="pt-4 sm:pt-8 border-t border-stone-200">
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-2 mb-2 sm:mb-4 px-1 sm:px-0">
-                        <div>
-                          <h4 className="text-sm sm:text-lg font-extrabold text-neutral-900">
-                            {currentCategory.storybooks[1 - activeStorybookIndex]?.title}
-                          </h4>
-                          <p className="text-[11px] sm:text-sm text-neutral-500">
-                            {currentCategory.storybooks[1 - activeStorybookIndex]?.subtitle}
-                          </p>
-                        </div>
-                        <button
-                          onClick={() => {
-                            const other = currentCategory.storybooks[1 - activeStorybookIndex];
-                            handleOpenBoard(other.title, other.subtitle, other.image);
-                          }}
-                          className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-4 sm:py-2 rounded-full bg-brand-dark hover:bg-black text-white text-xs font-bold shadow transition-all hover:scale-105 cursor-pointer self-start sm:self-auto"
-                        >
-                          <Maximize2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-pink-400" />
-                          <span>Zoom & Inspect</span>
-                        </button>
+                      <div className="mb-2 sm:mb-4 px-1 sm:px-0">
+                        <h4 className="text-sm sm:text-lg font-extrabold text-neutral-900">
+                          {currentCategory.storybooks[1 - activeStorybookIndex]?.title}
+                        </h4>
+                        <p className="text-[11px] sm:text-sm text-neutral-500">
+                          {currentCategory.storybooks[1 - activeStorybookIndex]?.subtitle}
+                        </p>
                       </div>
 
                       <div
