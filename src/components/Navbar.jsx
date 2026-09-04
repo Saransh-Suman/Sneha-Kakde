@@ -101,7 +101,7 @@ export default function Navbar({ currentView, onNavigate, onOpenContact }) {
 
         {/* Action Buttons (Desktop) */}
         <div className="hidden md:flex items-center gap-3">
-          {currentView === 'archive' ? (
+          {currentView !== 'home' ? (
             <button
               onClick={() => onNavigate('home')}
               className="flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-gray-800 bg-gray-100 hover:bg-gray-200 rounded-full transition-all hover:scale-105 active:scale-95 cursor-pointer"
@@ -123,7 +123,7 @@ export default function Navbar({ currentView, onNavigate, onOpenContact }) {
 
         {/* Mobile Action Pill + Mobile Menu Button */}
         <div className="flex md:hidden items-center gap-2">
-          {currentView === 'archive' ? (
+          {currentView !== 'home' ? (
             <button
               onClick={() => onNavigate('home')}
               className="flex items-center gap-1 px-3 py-1.5 text-xs font-bold text-gray-800 bg-gray-100 rounded-full cursor-pointer"

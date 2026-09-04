@@ -5,15 +5,24 @@ import Projects from './components/Projects';
 import About from './components/About';
 import Footer from './components/Footer';
 import ArchivePage from './pages/ArchivePage';
+import NotFoundPage from './pages/NotFoundPage';
 import CaseStudyModal from './components/CaseStudyModal';
 import ContactModal from './components/ContactModal';
 import CraftGalleryModal from './components/CraftGalleryModal';
 import { ArrowUp } from 'lucide-react';
 
+const getViewFromHash = () => {
+  const hash = window.location.hash;
+  if (hash === '#archive') return 'archive';
+  if (hash === '#404') return '404';
+  if (!hash || hash === '#' || hash === '#home' || hash.startsWith('#about') || hash.startsWith('#work') || hash.startsWith('#interests') || hash.startsWith('#contact') || hash.startsWith('#hero') || hash.startsWith('#craft') || hash.startsWith('#projects')) {
+    return 'home';
+  }
+  return '404';
+};
+
 export default function App() {
-  const [currentView, setCurrentView] = useState(() => {
-    return window.location.hash === '#archive' ? 'archive' : 'home';
-  });
+  const [currentView, setCurrentView] = useState(() => getViewFromHash());
   const [selectedProject, setSelectedProject] = useState(null);
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [selectedCraft, setSelectedCraft] = useState(null);
@@ -22,18 +31,12 @@ export default function App() {
   // Sync with browser URL hash
   useEffect(() => {
     const handleHashChange = () => {
-      if (window.location.hash === '#archive') {
-        setCurrentView('archive');
-      } else if (window.location.hash === '' || window.location.hash === '#home' || !window.location.hash.startsWith('#archive')) {
-        if (currentView === 'archive' && window.location.hash !== '#archive') {
-          setCurrentView('home');
-        }
-      }
+      setCurrentView(getViewFromHash());
     };
 
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
-  }, [currentView]);
+  }, []);
 
   useEffect(() => {
     const checkScroll = () => {
@@ -47,6 +50,8 @@ export default function App() {
     setCurrentView(view);
     if (view === 'archive') {
       window.location.hash = 'archive';
+    } else if (view === '404') {
+      window.location.hash = '404';
     } else {
       window.location.hash = '';
     }
@@ -69,7 +74,7 @@ export default function App() {
 
       {/* Main Content Router */}
       <main>
-        {currentView === 'home' ? (
+        {currentView === 'home' && (
           <>
             <Hero 
               onOpenContact={() => setIsContactOpen(true)} 
@@ -81,10 +86,18 @@ export default function App() {
               onSelectCraft={(craft) => setSelectedCraft(craft)} 
             />
           </>
-        ) : (
+        )}
+        {currentView === 'archive' && (
           <ArchivePage 
             onBackToHome={() => navigateTo('home')}
             onSelectImage={(item) => setSelectedCraft(item)}
+          />
+        )}
+        {currentView === '404' && (
+          <NotFoundPage 
+            onBackToHome={() => navigateTo('home')}
+            onOpenContact={() => setIsContactOpen(true)}
+            onNavigateToArchive={() => navigateTo('archive')}
           />
         )}
       </main>
