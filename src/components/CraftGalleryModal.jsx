@@ -346,10 +346,7 @@ export default function CraftGalleryModal({ item, onClose }) {
             </p>
           </div>
 
-          <div className="flex items-center justify-between sm:justify-end w-full sm:w-auto gap-2">
-            <span className="text-[10px] text-neutral-400 hidden sm:inline-block">
-              {scale > 1 ? 'Drag to pan • Double-click to reset' : 'Pinch or scroll to zoom'}
-            </span>
+          <div className="flex items-center justify-end w-full sm:w-auto gap-2">
             <button
               onClick={onClose}
               className="w-full sm:w-auto px-4 sm:px-5 py-1 sm:py-1.5 rounded-full bg-white text-black text-xs font-bold hover:bg-neutral-200 transition-all active:scale-95 cursor-pointer text-center"

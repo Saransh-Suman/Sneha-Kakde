@@ -8,9 +8,7 @@ import {
   Music, 
   Layers, 
   Feather,
-  X,
-  Play,
-  Pause
+  X
 } from 'lucide-react';
 
 const coverflowSlides = [
@@ -64,7 +62,6 @@ const coverflowSlides = [
 export default function OffTheGridCoverflow() {
   const [virtualIndex, setVirtualIndex] = useState(0);
   const [isCardExpanded, setIsCardExpanded] = useState(false);
-  const [isAutoPlayPaused, setIsAutoPlayPaused] = useState(false);
   const [isCenterHovered, setIsCenterHovered] = useState(false);
   const [isInteracting, setIsInteracting] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -142,22 +139,16 @@ export default function OffTheGridCoverflow() {
     return () => document.removeEventListener('pointerdown', handlePointerDown);
   }, [isCardExpanded]);
 
-  // Automatic sliding timer:
-  // Smoothly advances every 2.2 seconds (crisp, lively cadence).
-  // Pauses ONLY when:
-  // 1. Center card is expanded for reading
-  // 2. User is actively dragging / swiping
-  // 3. User hovered directly over the center card
-  // 4. User manually paused auto-sliding
+  // Automatic sliding timer (crisp, lively cadence)
   useEffect(() => {
-    if (isAutoPlayPaused || isCardExpanded || isInteracting || isCenterHovered) return;
+    if (isCardExpanded || isInteracting || isCenterHovered) return;
 
     const timer = setInterval(() => {
       setVirtualIndex((prev) => prev + 1);
     }, 2200);
 
     return () => clearInterval(timer);
-  }, [isAutoPlayPaused, isCardExpanded, isInteracting, isCenterHovered, virtualIndex]);
+  }, [isCardExpanded, isInteracting, isCenterHovered, virtualIndex]);
 
   // Mobile Touch Gestures
   const touchStartX = useRef(0);
@@ -193,33 +184,11 @@ export default function OffTheGridCoverflow() {
       {/* Subtle Radial Glow Behind Active Center Card */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[750px] h-[400px] bg-white rounded-full blur-3xl opacity-70 pointer-events-none -z-0" />
 
-      {/* Top Header Bar: Title + Auto-sliding Status & Toggle */}
+      {/* Top Header Bar */}
       <div className="relative z-20 flex items-center justify-between mb-8 sm:mb-12 px-2 sm:px-6">
         <h2 className="text-xs sm:text-sm font-semibold tracking-widest text-zinc-800 uppercase font-sans">
           OFF THE GRID
         </h2>
-
-        {/* Dual Control Indicator: Shows auto-sliding status & allows manual pause/play */}
-        <button
-          onClick={() => setIsAutoPlayPaused((prev) => !prev)}
-          className="group flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 hover:bg-white border border-neutral-200/90 shadow-sm text-xs font-medium text-neutral-600 hover:text-neutral-900 transition-all cursor-pointer"
-          title={isAutoPlayPaused ? "Resume auto-sliding" : "Pause auto-sliding"}
-          aria-label={isAutoPlayPaused ? "Resume auto-sliding" : "Pause auto-sliding"}
-        >
-          {isAutoPlayPaused ? (
-            <>
-              <span className="w-2 h-2 rounded-full bg-amber-400 flex-shrink-0" />
-              <span className="text-[11px] sm:text-xs">Paused</span>
-              <Play className="w-3 h-3 text-neutral-500 group-hover:text-neutral-900 ml-0.5" />
-            </>
-          ) : (
-            <>
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse flex-shrink-0" />
-              <span className="text-[11px] sm:text-xs">Auto-sliding</span>
-              <Pause className="w-3 h-3 text-neutral-400 group-hover:text-neutral-700 ml-0.5" />
-            </>
-          )}
-        </button>
       </div>
 
       {/* 3D Coverflow Stage */}
@@ -392,7 +361,7 @@ export default function OffTheGridCoverflow() {
                   ? 'ring-2 ring-white/80 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.28)]' 
                   : 'shadow-[0_10px_25px_rgba(0,0,0,0.10)]'
               }`}
-              title={isActive ? (isCardExpanded ? "Click to collapse" : "Click to view full text") : `Click to view ${slide.title}`}
+              title={slide.title}
             >
               {/* High-Resolution Direct Image with Fallback */}
               <img 
@@ -463,8 +432,8 @@ export default function OffTheGridCoverflow() {
         })}
       </div>
 
-      {/* Clean Bottom Dot Navigation Bar & Dual Controls Helper */}
-      <div className="relative z-20 mt-8 sm:mt-12 flex flex-col items-center gap-2.5">
+      {/* Clean Bottom Dot Navigation Bar */}
+      <div className="relative z-20 mt-8 sm:mt-12 flex flex-col items-center">
         <div className="flex items-center gap-2.5">
           {coverflowSlides.map((slide, i) => (
             <button
@@ -480,9 +449,6 @@ export default function OffTheGridCoverflow() {
             />
           ))}
         </div>
-        <p className="text-[11px] sm:text-xs text-neutral-400 font-normal tracking-wide">
-          Swipe, drag, or use arrows to navigate manually
-        </p>
       </div>
 
     </section>

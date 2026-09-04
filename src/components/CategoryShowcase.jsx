@@ -234,13 +234,6 @@ export default function CategoryShowcase({ onSelectImage }) {
                         loading="eager"
                         className="w-full h-auto object-contain block select-none"
                       />
-
-                      <div className="absolute top-2.5 right-2.5 sm:top-4 sm:right-4 z-10 opacity-90 group-hover:opacity-100 transition-opacity">
-                        <div className="px-2.5 sm:px-4 py-1 sm:py-2 rounded-full bg-black/75 backdrop-blur-md text-white text-[9.5px] sm:text-xs font-bold flex items-center gap-1.5 sm:gap-2 shadow-lg border border-white/20">
-                          <ZoomIn className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-pink-400" />
-                          <span>Tap to zoom</span>
-                        </div>
-                      </div>
                     </div>
 
                     {/* Also display the other storybook below for immediate complete discovery */}
@@ -279,13 +272,6 @@ export default function CategoryShowcase({ onSelectImage }) {
                           loading="lazy"
                           className="w-full h-auto object-contain block select-none"
                         />
-
-                        <div className="absolute top-2.5 right-2.5 sm:top-4 sm:right-4 z-10 opacity-90 group-hover:opacity-100 transition-opacity">
-                          <div className="px-2.5 sm:px-4 py-1 sm:py-2 rounded-full bg-black/75 backdrop-blur-md text-white text-[9.5px] sm:text-xs font-bold flex items-center gap-1.5 sm:gap-2 shadow-lg border border-white/20">
-                            <ZoomIn className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-pink-400" />
-                            <span>Tap to zoom</span>
-                          </div>
-                        </div>
                       </div>
                     </div>
 
@@ -306,22 +292,6 @@ export default function CategoryShowcase({ onSelectImage }) {
                   loading="eager"
                   className="w-full h-auto object-contain block select-none"
                 />
-
-                {/* Hover/Tap Floating Guide Pill */}
-                <div className="absolute top-2.5 right-2.5 sm:top-4 sm:right-4 z-10 opacity-90 group-hover:opacity-100 transition-opacity">
-                  <div className="px-2.5 sm:px-4 py-1 sm:py-2 rounded-full bg-black/75 backdrop-blur-md text-white text-[9.5px] sm:text-xs font-bold flex items-center gap-1.5 sm:gap-2 shadow-lg border border-white/20">
-                    <ZoomIn className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-pink-400" />
-                    <span>Tap / Click to inspect</span>
-                  </div>
-                </div>
-
-                {/* Bottom Subtle Overlay */}
-                <div className="absolute inset-x-0 bottom-0 py-3 sm:py-6 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
-                  <div className="px-3.5 sm:px-6 py-1 sm:py-2 rounded-full bg-white/90 backdrop-blur-md text-neutral-900 text-xs sm:text-sm font-bold flex items-center gap-2 shadow-xl">
-                    <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-pink" />
-                    <span>Detailed Inspection</span>
-                  </div>
-                </div>
               </div>
 
               {/* Interactive Clickable Video & Asset Links (Matching Figma Orange Bar Aesthetic) */}
