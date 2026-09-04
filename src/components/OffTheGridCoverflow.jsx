@@ -1,0 +1,386 @@
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { motion } from 'framer-motion';
+import { 
+  ChevronLeft, 
+  ChevronRight, 
+  BookOpen, 
+  PenTool, 
+  Music, 
+  Layers, 
+  Feather,
+  X 
+} from 'lucide-react';
+
+const coverflowSlides = [
+  {
+    id: 'writing',
+    category: 'Writing',
+    icon: Feather,
+    title: 'Writing',
+    quote: 'I write – articles, thoughts in Marathi. Writing observations and reflections into stories.',
+    image: 'https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=900&q=80',
+    fallback: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=900&q=80'
+  },
+  {
+    id: 'sketching',
+    category: 'Sketching',
+    icon: PenTool,
+    title: 'Sketching',
+    quote: 'I sketch, illustrate & calligraphy – when an idea feels easier to draw than explain.',
+    image: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=900&q=80',
+    fallback: '/assets/craft_sketch_book.webp'
+  },
+  {
+    id: 'reading',
+    category: 'Reading',
+    icon: BookOpen,
+    title: 'Reading',
+    quote: 'I read – because every book gives me another perspective.',
+    image: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=900&q=80',
+    fallback: '/assets/archive_storybook_1.webp'
+  },
+  {
+    id: 'music',
+    category: 'Music',
+    icon: Music,
+    title: 'Music',
+    quote: 'I listen to music & sing – because sometimes a melody says what words cannot.',
+    image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=900&q=80',
+    fallback: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=900&q=80'
+  },
+  {
+    id: 'tactile-forms',
+    category: 'Tactile forms',
+    icon: Layers,
+    title: 'Tactile forms',
+    quote: 'Sculpting with POP and clay – refining tactile forms with my hands.',
+    image: 'https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?auto=format&fit=crop&w=900&q=80',
+    fallback: 'https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=900&q=80'
+  }
+];
+
+export default function OffTheGridCoverflow() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isCardExpanded, setIsCardExpanded] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isInteracting, setIsInteracting] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const containerRef = useRef(null);
+
+  const total = coverflowSlides.length;
+
+  // Prioritized preloading to prevent rendering delays
+  useEffect(() => {
+    coverflowSlides.forEach((slide) => {
+      const img = new Image();
+      img.src = slide.image;
+    });
+  }, []);
+
+  // Responsive breakpoint listener
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Continuous modular loop navigation
+  const nextSlide = useCallback(() => {
+    setIsCardExpanded(false);
+    setActiveIndex((prev) => (prev + 1) % total);
+  }, [total]);
+
+  const prevSlide = useCallback(() => {
+    setIsCardExpanded(false);
+    setActiveIndex((prev) => (prev - 1 + total) % total);
+  }, [total]);
+
+  // Keyboard navigation & Escape dismiss
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && isCardExpanded) {
+        setIsCardExpanded(false);
+        return;
+      }
+      if (e.key === 'ArrowRight') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [nextSlide, prevSlide, isCardExpanded]);
+
+  // Dismiss expanded card on clicking outside
+  useEffect(() => {
+    if (!isCardExpanded) return;
+
+    const handlePointerDown = (e) => {
+      if (containerRef.current && !containerRef.current.contains(e.target)) {
+        setIsCardExpanded(false);
+      }
+    };
+
+    document.addEventListener('pointerdown', handlePointerDown);
+    return () => document.removeEventListener('pointerdown', handlePointerDown);
+  }, [isCardExpanded]);
+
+  // Locked automatic continuous sliding every 3 seconds (pauses on hover, active interaction, or card expanded)
+  useEffect(() => {
+    if (isHovered || isInteracting || isCardExpanded) return;
+
+    const timer = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % total);
+    }, 3000);
+
+    return () => clearInterval(timer);
+  }, [isHovered, isInteracting, isCardExpanded, total]);
+
+  // Touch gesture support
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.targetTouches[0].clientX;
+    setIsInteracting(true);
+  };
+
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    setIsInteracting(false);
+    const diff = touchStartX.current - touchEndX.current;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) nextSlide();
+      else prevSlide();
+    }
+  };
+
+  return (
+    <section 
+      ref={containerRef}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="relative w-full rounded-[36px] sm:rounded-[44px] bg-[#F8F9FA] border border-neutral-200/80 shadow-[0_20px_60px_rgba(0,0,0,0.04)] py-12 sm:py-16 md:py-20 px-4 sm:px-8 select-none my-8 overflow-hidden"
+      style={{ perspective: 1200 }}
+    >
+      {/* Subtle Radial Glow Behind Active Card */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[750px] h-[400px] bg-white rounded-full blur-3xl opacity-70 pointer-events-none -z-0" />
+
+      {/* Top Header Bar */}
+      <div className="relative z-20 flex items-center justify-between mb-8 sm:mb-12 px-2 sm:px-6">
+        <h2 className="text-xs sm:text-sm font-semibold tracking-widest text-zinc-800 uppercase font-sans">
+          OFF THE GRID
+        </h2>
+        <span className="text-xs text-neutral-400 font-normal tracking-wide">
+          Hover to pause sliding
+        </span>
+      </div>
+
+      {/* 3D Coverflow Stage with Ample Height and Overflow Visible to Prevent Any Bottom Clipping */}
+      <div 
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        className="relative z-10 w-full max-w-6xl mx-auto h-[440px] sm:h-[480px] md:h-[510px] flex items-center justify-center overflow-visible"
+        style={{ transformStyle: 'preserve-3d' }}
+      >
+        {/* Floating Circular Prev / Next Navigation Buttons */}
+        <button
+          onClick={prevSlide}
+          aria-label="Previous slide"
+          className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/95 backdrop-blur-md border border-neutral-200/90 shadow-[0_8px_25px_rgba(0,0,0,0.08)] flex items-center justify-center text-neutral-700 hover:scale-110 active:scale-95 transition-all cursor-pointer absolute left-1 sm:left-4 md:left-6 top-1/2 -translate-y-1/2 z-40"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+
+        <button
+          onClick={nextSlide}
+          aria-label="Next slide"
+          className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/95 backdrop-blur-md border border-neutral-200/90 shadow-[0_8px_25px_rgba(0,0,0,0.08)] flex items-center justify-center text-neutral-700 hover:scale-110 active:scale-95 transition-all cursor-pointer absolute right-1 sm:right-4 md:right-6 top-1/2 -translate-y-1/2 z-40"
+        >
+          <ChevronRight className="w-5 h-5" />
+        </button>
+
+        {/* 5 Layered 3D Coverflow Cards */}
+        {coverflowSlides.map((slide, idx) => {
+          const Icon = slide.icon;
+
+          // Circular offset mapped to range [-2, 2]
+          let diff = idx - activeIndex;
+          while (diff > 2) diff -= total;
+          while (diff < -2) diff += total;
+
+          const isActive = diff === 0;
+          const absDiff = Math.abs(diff);
+
+          // Horizontal spacing offsets with balanced overlap
+          let xOffset = 0;
+          if (isMobile) {
+            xOffset = diff * 115;
+          } else {
+            xOffset = diff * (absDiff === 1 ? 190 : 325);
+          }
+
+          // Depth-of-Field & Scaling:
+          // Active: scale-110, blur(0px), opacity 1.0, z-30
+          // Flanking (±1): scale-90, blur(6px), opacity 0.50, z-20
+          // Outer (±2): scale-80, blur(10px), opacity 0.25, z-10
+          let scale = 1.10;
+          let blurAmount = 0;
+          let opacity = 1.0;
+          let zIndex = 30;
+          let rotateY = 0;
+
+          if (absDiff === 1) {
+            scale = isMobile ? 0.94 : 0.90;
+            blurAmount = 6;
+            opacity = 0.50;
+            zIndex = 20;
+            rotateY = diff < 0 ? 12 : -12;
+          } else if (absDiff >= 2) {
+            scale = isMobile ? 0.85 : 0.80;
+            blurAmount = 10;
+            opacity = 0.25;
+            zIndex = 10;
+            rotateY = diff < 0 ? 18 : -18;
+          }
+
+          return (
+            <motion.div
+              key={slide.id}
+              onClick={() => {
+                if (isActive) {
+                  setIsCardExpanded((prev) => !prev);
+                } else {
+                  setIsCardExpanded(false);
+                  setActiveIndex(idx);
+                }
+              }}
+              animate={{
+                x: xOffset,
+                y: isActive ? -10 : 6,
+                scale: isMobile && isActive ? 1.05 : scale,
+                rotateY,
+                z: isActive ? 40 : -50 * absDiff,
+                opacity,
+                filter: `blur(${blurAmount}px)`
+              }}
+              transition={{
+                duration: 0.5,
+                ease: [0.16, 1, 0.3, 1]
+              }}
+              drag={isActive ? 'x' : false}
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.25}
+              onDragStart={() => setIsInteracting(true)}
+              onDragEnd={(_, { offset, velocity }) => {
+                setIsInteracting(false);
+                if (offset.x < -40 || velocity.x < -300) nextSlide();
+                if (offset.x > 40 || velocity.x > 300) prevSlide();
+              }}
+              style={{
+                zIndex,
+                transformStyle: 'preserve-3d',
+                cursor: 'pointer'
+              }}
+              className={`absolute top-1/2 left-1/2 -ml-[120px] -mt-[160px] w-[240px] h-[320px] sm:-ml-[135px] sm:-mt-[180px] sm:w-[270px] sm:h-[360px] md:-ml-[145px] md:-mt-[195px] md:w-[290px] md:h-[390px] rounded-3xl overflow-hidden bg-neutral-900 transition-shadow duration-300 ${
+                isActive 
+                  ? 'ring-2 ring-white/80 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.28)]' 
+                  : 'shadow-[0_10px_25px_rgba(0,0,0,0.10)]'
+              }`}
+              title={isActive ? (isCardExpanded ? "Click to collapse" : "Click to view full text") : `Click to view ${slide.title}`}
+            >
+              {/* High-Resolution Direct Image with Fallback */}
+              <img 
+                src={slide.image} 
+                alt={slide.title} 
+                className="object-cover w-full h-full absolute inset-0 pointer-events-none"
+                loading="eager"
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = slide.fallback || '/assets/archive_storybook_1.webp';
+                }}
+              />
+
+              {/* Gradient Vignette Behind Dock */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent pointer-events-none" />
+
+              {/* Clean Frosted Dark Glass Bottom Dock (Expands smoothly on click) */}
+              <motion.div 
+                layout
+                transition={{ duration: 0.3, ease: 'easeOut' }}
+                className={`absolute bottom-3 left-3 right-3 rounded-2xl bg-black/55 backdrop-blur-md border border-white/10 text-white text-center flex flex-col items-center shadow-lg transition-colors duration-300 ${
+                  isCardExpanded && isActive 
+                    ? 'p-4 sm:p-5 bg-black/80 backdrop-blur-xl border-white/20' 
+                    : 'p-3.5 sm:p-4'
+                }`}
+              >
+                {/* Close ✕ icon when expanded */}
+                {isCardExpanded && isActive && (
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsCardExpanded(false);
+                    }}
+                    aria-label="Collapse"
+                    className="absolute top-2.5 right-2.5 w-6 h-6 rounded-full bg-white/15 hover:bg-white/30 text-white flex items-center justify-center transition-colors cursor-pointer"
+                  >
+                    <X className="w-3.5 h-3.5" />
+                  </button>
+                )}
+
+                {/* Category Icon Pill */}
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/20 backdrop-blur-sm border border-white/20 flex items-center justify-center mb-1.5 text-white flex-shrink-0 shadow-inner">
+                  <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2]" />
+                </div>
+
+                {/* Crisp White Title */}
+                <h3 className="text-base md:text-lg font-semibold text-white tracking-tight leading-tight">
+                  {slide.title}
+                </h3>
+
+                {/* Original Brief Quote: Truncated by default, untruncated full text on click */}
+                {isActive && (
+                  <motion.p
+                    layout="position"
+                    initial={{ opacity: 0, y: 3 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className={`text-xs md:text-sm text-neutral-200 mt-1 font-normal leading-relaxed ${
+                      isCardExpanded ? 'line-clamp-none' : 'line-clamp-2'
+                    }`}
+                  >
+                    {slide.quote}
+                  </motion.p>
+                )}
+              </motion.div>
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* Clean Bottom Dot Navigation Bar: Dedicated Spacing Below Track with Zero Overlap */}
+      <div className="relative z-20 mt-8 sm:mt-12 flex flex-col items-center">
+        <div className="flex items-center gap-2.5">
+          {coverflowSlides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setActiveIndex(i)}
+              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                i === activeIndex 
+                  ? 'w-8 bg-zinc-800' 
+                  : 'w-2 bg-neutral-300 hover:bg-neutral-400'
+              }`}
+              aria-label={`Jump to slide ${i + 1}`}
+            />
+          ))}
+        </div>
+      </div>
+
+    </section>
+  );
+}

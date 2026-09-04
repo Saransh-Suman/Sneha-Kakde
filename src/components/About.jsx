@@ -1,72 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { personalInfo, craftGallery } from '../data/portfolioData';
-import { 
-  BookOpen, 
-  PenTool, 
-  Music, 
-  Feather, 
-  Camera, 
-  Activity, 
-  Film, 
-  Utensils, 
-  Layers, 
-  Sparkles, 
-  Eye 
-} from 'lucide-react';
+import { Sparkles, Eye } from 'lucide-react';
 import ImageWithSkeleton from './ImageWithSkeleton';
-
-const allInterestCards = [
-  {
-    id: 'read',
-    icon: BookOpen,
-    text: 'I read - because every book gives me another perspective.'
-  },
-  {
-    id: 'sketch',
-    icon: PenTool,
-    text: 'I sketch, illustrate & Calligraphy - when an idea feels easier to draw than explain.'
-  },
-  {
-    id: 'music',
-    icon: Music,
-    text: 'I listen to music & sing - because sometimes a melody says what words cannot.'
-  },
-  {
-    id: 'write',
-    icon: Feather,
-    text: 'I write - articles, thoughts, and poems in Marathi. Writing helps me turn observations and raw emotions into stories.'
-  },
-  {
-    id: 'photo',
-    icon: Camera,
-    text: 'I photograph - little details, people, places, light, textures, and everyday fleeting moments that often go unnoticed.'
-  },
-  {
-    id: 'badminton',
-    icon: Activity,
-    text: 'I play badminton - for the energy, focus, fast reflexes, and the pure joy of simply playing.'
-  },
-  {
-    id: 'movies',
-    icon: Film,
-    text: 'I watch movies - for the stories, characters, cinematography, VFX, visual language, and worlds they unlock.'
-  },
-  {
-    id: 'cooking',
-    icon: Utensils,
-    text: 'I love cooking - experimenting with ingredients, trying new recipes, and turning simple things into something flavorful.'
-  },
-  {
-    id: 'sculpting',
-    icon: Layers,
-    text: 'I love sculpting - working with POP and clay, shaping physical forms with my hands, carving, and refining tactile ideas.'
-  }
-];
+import OffTheGridCoverflow from './OffTheGridCoverflow';
 
 export default function About({ onSelectCraft }) {
-  // Duplicate items for infinite seamless sliding loop
-  const duplicatedInterests = [...allInterestCards, ...allInterestCards];
   const duplicatedGallery = [...craftGallery, ...craftGallery];
 
   return (
@@ -134,43 +73,13 @@ export default function About({ onSelectCraft }) {
 
         </div>
 
-        {/* Infinite Smooth-Sliding Interest Cards (Right to Left Continuous Carousel) */}
-        <div className="space-y-3 sm:space-y-4 pt-2">
-          <div className="flex items-center justify-between text-xs text-neutral-400 font-semibold px-1">
-            <span className="uppercase tracking-wider text-[11px] sm:text-xs">Interests & Mindset</span>
-            <span className="text-[11px] sm:text-xs text-neutral-400">
-              <span className="hidden sm:inline">Hover to pause sliding</span>
-              <span className="sm:hidden">Touch to pause</span>
-            </span>
-          </div>
-
-          <div className="marquee-container relative overflow-hidden py-2 -mx-4 sm:-mx-8 px-4 sm:px-8 cursor-grab">
-            <div className="animate-marquee-interests flex gap-3 sm:gap-5">
-              {duplicatedInterests.map((item, idx) => {
-                const Icon = item.icon;
-                return (
-                  <div
-                    key={`${item.id}-${idx}`}
-                    className="w-64 sm:w-80 flex-shrink-0 p-5 sm:p-7 rounded-2xl bg-white border border-neutral-300 shadow-sm flex flex-col items-center justify-center text-center group transition-all duration-300 min-h-[170px] sm:min-h-[200px] hover:border-brand-pink hover:shadow-lg hover:-translate-y-1"
-                  >
-                    {/* Outline Icon */}
-                    <div className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center mb-3 sm:mb-4 text-neutral-800 group-hover:text-brand-pink transition-colors">
-                      <Icon className="w-6 h-6 sm:w-7 sm:h-7 stroke-[1.4]" />
-                    </div>
-
-                    {/* Card Text */}
-                    <p className="text-xs sm:text-sm font-medium text-neutral-800 leading-relaxed">
-                      {item.text}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+        {/* OFF THE GRID - 3D Coverflow Carousel Matching Reference */}
+        <div id="interests" className="scroll-mt-20">
+          <OffTheGridCoverflow />
         </div>
 
         {/* Narrative Paragraph: Different interests. One curious mind. (Matching Figma exactly) */}
-        <div id="interests" className="space-y-2 sm:space-y-3 pt-2 text-left scroll-mt-20">
+        <div className="space-y-2 sm:space-y-3 pt-2 text-left">
           <h3 className="text-lg sm:text-2xl font-bold text-neutral-900 tracking-tight">
             Different interests. One curious mind.
           </h3>

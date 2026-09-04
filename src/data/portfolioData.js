@@ -39,64 +39,109 @@ export const interests = [
     id: "reading",
     icon: "BookOpen",
     title: "I read",
-    description: "Because every book gives me another perspective and opens up fresh ways of seeing the world.",
-    category: "Mindset"
+    tagline: "New perspectives & worldviews",
+    description: "Every book gives me another perspective and opens up fresh ways of seeing the world.",
+    mindset: "Teaches me to step into unfamiliar realities, analyze complex contexts, and understand human psychology deeply.",
+    category: "Mindset",
+    visual: "/assets/archive_storybook_1.webp",
+    color: "#4F46E5",
+    quote: "Books are portals into other mental models."
   },
   {
     id: "sketching",
     icon: "PenTool",
     title: "I sketch & illustrate",
-    description: "When an idea feels easier to draw than explain — from quick character doodles to calligraphy.",
-    category: "Craft"
+    tagline: "Visualizing thoughts & calligraphy",
+    description: "When an idea feels easier to draw than explain — from quick character doodles to Devanagari calligraphy.",
+    mindset: "Bridges abstract thoughts into concrete visual forms, letting intuition and gesture lead before wireframing.",
+    category: "Craft",
+    visual: "/assets/craft_sketch_book.webp",
+    color: "#E6004C",
+    quote: "Sketching is thinking with a pen in hand."
   },
   {
     id: "music",
     icon: "Music",
     title: "I listen to music & sing",
-    description: "Because sometimes a melody says what words cannot, setting rhythm for creative flow.",
-    category: "Expression"
+    tagline: "Rhythm, melody & creative flow",
+    description: "Sometimes a melody says what words cannot, setting the rhythm for deep creative immersion and resonance.",
+    mindset: "Interfaces possess rhythm, cadence, and pause — just like a well-composed musical piece.",
+    category: "Expression",
+    visual: "/assets/craft_anchoring.webp",
+    color: "#8B5CF6",
+    quote: "Rhythm guides attention, silence creates room to breathe."
   },
   {
     id: "writing",
     icon: "Feather",
     title: "I write in Marathi",
-    description: "Articles, thoughts, and poems in Marathi. Writing helps me turn observations and raw emotions into stories.",
-    category: "Storytelling"
+    tagline: "Poems, reflections & storytelling",
+    description: "Articles, thoughts, and poems in Marathi. Writing helps me turn fleeting observations and raw emotions into structured stories.",
+    mindset: "Writing sharpens precision in microcopy, narrative coherence, and empathetic user communication.",
+    category: "Storytelling",
+    visual: "/assets/craft_poem.webp",
+    color: "#D97706",
+    quote: "Language gives shape to unstructured emotions."
   },
   {
     id: "photography",
     icon: "Camera",
     title: "I photograph",
+    tagline: "Fleeting light, texture & everyday life",
     description: "Little details, people, places, light, textures, and everyday fleeting moments that often go unnoticed.",
-    category: "Observation"
+    mindset: "Trains an eye for visual hierarchy, contrast, framing, and noticing what others naturally miss.",
+    category: "Observation",
+    visual: "/assets/archive_photography.webp",
+    color: "#059669",
+    quote: "Design is noticing what everyone else walks past."
   },
   {
     id: "badminton",
     icon: "Activity",
     title: "I play badminton",
-    description: "For the energy, focus, fast reflexes, and the pure joy of simply playing.",
-    category: "Energy"
+    tagline: "Energy, reflexes & resilience",
+    description: "For the energy, focus, fast reflexes, court awareness, and the pure joy of simply playing.",
+    mindset: "Cultivates split-second decision-making, adaptive composure, and stamina through iterative design cycles.",
+    category: "Energy",
+    visual: "/assets/craft_frame130_09_64ff3721.webp",
+    color: "#EA580C",
+    quote: "Swift reflexes on court translate to agility in problem-solving."
   },
   {
     id: "movies",
     icon: "Film",
-    title: "I watch movies",
+    title: "I watch cinema",
+    tagline: "Cinematography & visual language",
     description: "For the stories, characters, cinematography, VFX, visual language, moodboards, and worlds they unlock.",
-    category: "Visual Language"
+    mindset: "Teaches cinematic visual pacing, emotional arcs, atmospheric lighting, and scene transitions in digital design.",
+    category: "Visual Language",
+    visual: "/assets/archive_3d_animation.webp",
+    color: "#DC2626",
+    quote: "Every frame carries deliberate intention, tone, and composition."
   },
   {
     id: "cooking",
     icon: "Utensils",
     title: "I love cooking",
+    tagline: "Experimentation & balanced craft",
     description: "Experimenting with ingredients, trying new recipes, and turning simple things into something flavorful.",
-    category: "Creativity"
+    mindset: "Design is like culinary craft: knowing what to add, and having the restraint to let simplicity shine.",
+    category: "Creativity",
+    visual: "/assets/adyam_cover.webp",
+    color: "#0284C7",
+    quote: "Great craft balances bold flavors with quiet nuance."
   },
   {
     id: "sculpting",
     icon: "Layers",
     title: "I love sculpting",
+    tagline: "Tactile clay & 3D forms",
     description: "Working with POP and clay, shaping physical forms with my hands, carving, and refining tactile ideas.",
-    category: "Hands-on"
+    mindset: "Grounds digital UI in materiality, tactile affordance, weight, and dimensional depth.",
+    category: "Hands-on",
+    visual: "/assets/craft_clay.webp",
+    color: "#0D9488",
+    quote: "Form follows touch — materiality informs how things should feel."
   }
 ];
 
